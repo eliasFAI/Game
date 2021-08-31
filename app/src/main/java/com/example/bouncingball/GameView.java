@@ -60,7 +60,7 @@ public class GameView extends SurfaceView {
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 setWillNotDraw(false);
                 nivel = 1;
-                vidas = 1;
+                vidas = 200;
                 puntaje = 0;
                 cayo = false;
                 xMax = getWidth();
