@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:background="#3A1614"
         android:gravity="center"
-        android:text="REGISTRARSE"
+        android:text="Registro"
         android:textColor="#FFC107"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
