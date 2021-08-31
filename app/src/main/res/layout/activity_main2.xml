@@ -131,7 +131,7 @@
         android:layout_marginRight="8dp"
         android:background="#F44336"
         android:onClick="guardar"
-        android:text="GUARDAR"
+        android:text="GUARDAR 2.0"
         android:textColor="#FFC107"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
