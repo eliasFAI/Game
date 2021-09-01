@@ -32,14 +32,14 @@
         android:background="#F44336"
         android:gravity="center"
         android:text="REGISTRARSE"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/btnLogin "
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -53,11 +53,12 @@
         android:onClick="login"
         android:text="LOGIN"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse"
+        tools:ignore="InvalidId" />
 
     <Button
         android:id="@+id/btnRanking"
@@ -72,11 +73,12 @@
         android:gravity="center"
         android:onClick="mostrar"
         android:text="RANKING"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin " />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin "
+        tools:ignore="UnknownId" />
 
     <Button
         android:id="@+id/btnSonido"
@@ -92,7 +94,7 @@
         android:onClick="sonido"
         android:text="SONIDO"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +111,7 @@
         android:layout_marginRight="16dp"
         android:background="#F44336"
         android:text="SALIR"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +129,7 @@
         android:background="#F44336"
         android:onClick="silencio"
         android:text="SILENCIO"
-        android:textColor="#FFC107"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
