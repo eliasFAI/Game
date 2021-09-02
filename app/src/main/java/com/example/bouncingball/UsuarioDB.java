@@ -23,7 +23,7 @@ public class UsuarioDB {
         ContentValues values = new ContentValues();
         values.put("usuario",usuario.getUsuario());
         values.put("clave",usuario.getClave());
-        values.put("pais",usuario.getPais());
+        values.put("email",usuario.getEmail());
         String us = usuario.getUsuario();
 
         Cursor c = banco.rawQuery("SELECT usuario from usuario  where usuario='us' ",null);

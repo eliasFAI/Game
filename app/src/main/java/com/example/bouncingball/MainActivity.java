@@ -2,6 +2,7 @@ package com.example.bouncingball;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -19,16 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        siguiente = (Button) findViewById(R.id.btnRegistrarse);
-        siguiente.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                Intent siguiente = new Intent(MainActivity.this,Main2Activity.class);
-                startActivity(siguiente);
-
-
-            }
-        });
        /* ranking =(Button) findViewById(R.id.btnRanking);
         ranking.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -42,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void login(View v){
+    public void play(View v){
 
         Intent jugar = new Intent(MainActivity.this,Main4Activity.class);
         startActivity(jugar);
@@ -53,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
      startActivity(mostrarActivity);
 
 
+    }
+    public void exit(View v){
+        super.onBackPressed();
+        finishAffinity();
+        System.exit(0);
     }
     public void sonido(View v){
 

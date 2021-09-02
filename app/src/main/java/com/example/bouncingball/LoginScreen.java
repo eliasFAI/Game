@@ -20,7 +20,7 @@ public class LoginScreen extends AppCompatActivity {
         startActivity(menu);
     }
     public void register(View v){
-        Intent menu = new Intent(LoginScreen.this,MainActivity.class);
+        Intent menu = new Intent(LoginScreen.this,Main2Activity.class);
         startActivity(menu);
     }
 }

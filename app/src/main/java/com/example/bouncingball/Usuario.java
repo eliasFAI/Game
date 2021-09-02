@@ -7,8 +7,8 @@ public class Usuario  implements Serializable {
     private Integer id;
     private String usuario ;
     private String clave ;
-    private String pais;
-    //private String email ;
+    //private String pais;
+    private String email ;
     private Integer puntaje;
 
     public Usuario(){
@@ -44,12 +44,12 @@ public class Usuario  implements Serializable {
         this.clave = clave;
     }
 
-    public String getPais() {
-        return pais;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setEmail(String em) {
+        this.email = em;
     }
     public Integer getPuntaje(){return this.puntaje;}
     public void setPuntaje(Integer p){
