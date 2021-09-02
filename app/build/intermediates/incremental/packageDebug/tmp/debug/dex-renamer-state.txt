@@ -1,4 +1,4 @@
-#Tue Aug 31 08:15:07 ART 2021
-base.0=C\:\\Users\\Lucas\\Desktop\\Laboratorio\\Game\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Thu Sep 02 09:59:51 ART 2021
+base.0=D\:\\android\\Proyecto\\JuegoFinal\\Game\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
