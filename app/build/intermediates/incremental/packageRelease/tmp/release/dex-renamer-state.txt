@@ -1,0 +1,4 @@
+#Thu Sep 02 12:53:57 ART 2021
+base.0=/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
