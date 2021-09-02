@@ -60,7 +60,7 @@ public class GameView extends SurfaceView {
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 setWillNotDraw(false);
                 nivel = 1;
-                vidas = 200;
+                vidas = 2;
                 puntaje = 0;
                 cayo = false;
                 xMax = getWidth();
@@ -68,8 +68,8 @@ public class GameView extends SurfaceView {
                 System.out.println("Ancho de la pantalla:"+xMax);
                 //Ubicacion del jugador
                 jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-                grilla = new Grilla(xMax, yMax, 7, 10, 25);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 13);
+                grilla = new Grilla(xMax, yMax, 7, 10, 30);
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
 
@@ -103,39 +103,52 @@ public class GameView extends SurfaceView {
         pincelIndicadores.setColor(Color.WHITE);
         pincelIndicadores.setTextSize(40f);
 
-        //Controles
-        verificarContactoPantalla();
+        if(false){
+            canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+            System.out.println("********************************");
+            System.out.println("***************GANASTE*****************");
+            System.out.println("********************************");
+            System.out.println("Posición X "+pelota.getX());
+            System.out.println("Posición Y "+pelota.getY());
+            pincelPelota.setColor(Color.RED);
+            canvas.drawRect(0, 0, pelota.getX() +100, pelota.getY()  +100, pincelPelota);
+        }else{
+            //Controles
+            verificarContactoPantalla();
 
-        //pelota.actualizarPosicion();
+            //pelota.actualizarPosicion();
 
 
-        if (vidas >= 0) {
-            this.recorrerBloquesYPintar(canvas);
+            if (vidas >= 0) {
+                this.recorrerBloquesYPintar(canvas);
 
-            //Es el ultimo bloque??
-            boolean gano=this.grilla.getCantidadBloquesPintados()==0;
-            if(gano){
-                this.nivelSuperado(canvas);
-            }else{
-                //actualizamos las posiciones
-                if (!cayo) {
-                    //Verifico contacto si la posicion es menor que
-                    this.controlDelJuego(canvas);
-                } else {
-                    //La pelota pasa al jugador
-                    this.restarVida();
+                //Es el ultimo bloque??
+                boolean gano=this.grilla.getCantidadBloquesPintados()==0;
+                if(gano){
+                    this.nivelSuperado(canvas);
+                }else{
+                    //actualizamos las posiciones
+                    if (!cayo) {
+                        //Verifico contacto si la posicion es menor que
+                        this.controlDelJuego(canvas);
+                    } else {
+                        //La pelota pasa al jugador
+                        this.restarVida();
+                    }
+                    //Pinta los indicadores de vida y puntaje
+                    this.dibujarIndicadores(canvas);
+                    //Jugador
+                    canvas.drawRect(jugador.getPosX(), jugador.getPosY(), jugador.getPosX() + jugador.getAnchoBloque(), jugador.getPosY() + jugador.getAltoBloque(), pincelJugador);
                 }
-                //Pinta los indicadores de vida y puntaje
-                this.dibujarIndicadores(canvas);
-                //Jugador
-                canvas.drawRect(jugador.getPosX(), jugador.getPosY(), jugador.getPosX() + jugador.getAnchoBloque(), jugador.getPosY() + jugador.getAltoBloque(), pincelJugador);
-            }
 
-        } else {
-            //Si pierdo todas las vidas
-            //AlertDialog.Builder builder = new AlertDialog.Builder();
-            this.reiniciarJuego(canvas);
+            } else {
+                //Si pierdo todas las vidas
+                //AlertDialog.Builder builder = new AlertDialog.Builder();
+                this.reiniciarJuego(canvas);
+            }
         }
+
+
     }
 
     //Metodos del Juego
@@ -385,6 +398,7 @@ public class GameView extends SurfaceView {
         Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
 
         if(rec1.intersect(rec2)){
+
             //Colisiono
             actualizarDireccion(b);
             b.setDureza(0);
@@ -396,36 +410,40 @@ public class GameView extends SurfaceView {
     }
 
     public void actualizarDireccion(Bloque b){
-        int puntoMedio=pelota.getY()+(pelota.getTamanio()/2);
+        int puntoMedioY=pelota.getY()+(pelota.getTamanio()/2);
+        int puntoMedioX=pelota.getX()+(pelota.getTamanio()/2);
         boolean chocoCostado=false;
-        boolean chocoDerecha=false;
-        boolean chocoIzquierda=false;
-        if(b.getPosY()<puntoMedio && puntoMedio<(b.getPosY()+b.getAltoBloque())){
+        boolean chocoDerechaBloque=false;
+        boolean chocoIzquierdaBloque=false;
+
+
+        //Choca en algun costado
+        if(b.getPosY()<puntoMedioY && puntoMedioY<(b.getPosY()+b.getAltoBloque())&& (puntoMedioX<b.getPosX() || puntoMedioX>(b.getPosX()+b.getAnchoBloque()))){
             //Choco en algun costado
             chocoCostado=true;
             if(b.getPosX()>pelota.getX()){
                 //choco en la izquierda
-                chocoIzquierda=true;
+                chocoIzquierdaBloque=true;
             }else{
                 //choco en la derecha
-                chocoDerecha=true;
+                chocoDerechaBloque=true;
             }
         }
 
         //Si el punto medio esta dentro de y <puntoMedio<(y+altoBloque)
         //De acuerdo a la direccion que lleva la pelota, es donde voy a tener un contacto
         if (pelota.getX() > pelota.getPosAnteriorX()) {
-            //Se mueve a la derecha
+            //Se esta moviendo a la derecha
             if (pelota.getY() > pelota.getPosAnteriorY()) {
                 //hacia abajo y a la derecha
-                if(chocoIzquierda||(pelota.getY()>b.getPosY())){
+                if(chocoIzquierdaBloque||(pelota.getY()>b.getPosY())){
                     pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
                 }else{
                     pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
                 }
             } else {
                 //Hacia arriba y a la derecha
-                if(chocoIzquierda||(pelota.getY()<b.getPosY())){
+                if(chocoIzquierdaBloque||(pelota.getY()<b.getPosY())){
                     pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
                 }else{
                     pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
@@ -437,14 +455,14 @@ public class GameView extends SurfaceView {
             if (pelota.getY() > pelota.getPosAnteriorY()) {
                 //hacia abajo y a la izquierda
                 //(pelota.getPosY()>b.getPosY()) Significa que paso el bloque
-                if(chocoDerecha||(pelota.getY()>b.getPosY())){
+                if(chocoDerechaBloque||(pelota.getY()>b.getPosY())){
                     pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
                 }else{
                     pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
                 }
             } else {
                 //Hacia arriba y a la izquierda
-                if(chocoDerecha||(pelota.getY()<b.getPosY())){
+                if(chocoDerechaBloque||(pelota.getY()<b.getPosY())){
                     pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
                 }else{
                     pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
@@ -460,6 +478,7 @@ public class GameView extends SurfaceView {
         //int y=pelota.getY();
 
         // Aca verificar *****
+        //
         int x=pelota.getPosSiguienteX()-7;
         int y=pelota.getPosSiguienteY()-7;
         int anchoPelota=pelota.getTamanio();
