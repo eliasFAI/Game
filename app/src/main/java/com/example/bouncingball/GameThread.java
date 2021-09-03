@@ -101,6 +101,7 @@ public class GameThread extends Thread {
 
     public synchronized void continuar() {
         paused = false;
+        //paused=!paused;
         notify();
     }
 

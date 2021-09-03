@@ -52,6 +52,9 @@ public class GameView extends SurfaceView {
     private boolean imgSuperoNivel=false;
     private Bitmap bmp;
 
+    private boolean juegoEnPausa=false;
+    private boolean siguienteFotograma=false;
+
     public GameView(Context context) {
         super(context);
         SurfaceHolder holder = getHolder();
@@ -103,16 +106,7 @@ public class GameView extends SurfaceView {
         pincelIndicadores.setColor(Color.WHITE);
         pincelIndicadores.setTextSize(40f);
 
-        if(false){
-            canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
-            System.out.println("********************************");
-            System.out.println("***************GANASTE*****************");
-            System.out.println("********************************");
-            System.out.println("Posición X "+pelota.getX());
-            System.out.println("Posición Y "+pelota.getY());
-            pincelPelota.setColor(Color.RED);
-            canvas.drawRect(0, 0, pelota.getX() +100, pelota.getY()  +100, pincelPelota);
-        }else{
+
             //Controles
             verificarContactoPantalla();
 
@@ -146,8 +140,15 @@ public class GameView extends SurfaceView {
                 //AlertDialog.Builder builder = new AlertDialog.Builder();
                 this.reiniciarJuego(canvas);
             }
-        }
 
+            //Posición del boton siguiente
+
+            canvas.drawRect(xMax-100, yMax-100, xMax+50, yMax+50, pincelPelota);
+            canvas.drawRect(0, yMax-100, 50, yMax-50, pincelPelota);
+            if(siguienteFotograma){
+                gameThread.pause();
+                siguienteFotograma=false;
+            }
 
     }
 
@@ -162,6 +163,7 @@ public class GameView extends SurfaceView {
                 if(this.grilla.getBloque(i,j).getDureza()==1){
                     //optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
                     if(!unContacto){
+                        verificarContacto2(this.grilla.getBloque(i,j));
                         unContacto=verificarContacto(this.grilla.getBloque(i,j));
                         if(unContacto){
                             this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
@@ -204,11 +206,13 @@ public class GameView extends SurfaceView {
             //Pelota en movimiento
             pelota.actualizarPosicion();
             canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+            //canvas.drawCircle((pelota.getX()+(pelota.getTamanio()/2)),(pelota.getX()+(pelota.getTamanio()/2)), pelota.getTamanio(),pincelPelota);
         } else {
             //La pelota esta en la posicion del jugador
             pelota.setX(jugador.getPosX() + (jugador.getAnchoBloque() / 2));
 
             canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+            //canvas.drawCircle((pelota.getX()+(pelota.getTamanio()/2)),(pelota.getX()+(pelota.getTamanio()/2)), pelota.getTamanio(),pincelPelota);
         }
     }
 
@@ -307,7 +311,36 @@ public class GameView extends SurfaceView {
                 }
             }
         }
+
+        if(juegoEnPausa && !siguienteFotograma){
+            if(posDedoX>xMax-100){
+                if(posDedoY>yMax-100){
+                    gameThread.continuar();
+                    System.out.println("Continuar jugando Boton Segui jugando");
+                    siguienteFotograma=true;
+                }
+            }
+        }
+
+        if(juegoEnPausa && !siguienteFotograma){
+            if(posDedoX<100){
+                if(posDedoY>yMax-100){
+                    gameThread.continuar();
+                    System.out.println("Continuar jugando Boton Segui jugando");
+
+                }
+            }
+        }
+
+
         return true;
+    }
+    public void controlarChoques(){
+        gameThread.pause();//Para verificar contactos
+        juegoEnPausa=true;
+        if(siguienteFotograma){
+
+        }
     }
 
     //Controlar rebote
@@ -399,6 +432,7 @@ public class GameView extends SurfaceView {
 
         if(rec1.intersect(rec2)){
 
+
             //Colisiono
             actualizarDireccion(b);
             b.setDureza(0);
@@ -406,8 +440,36 @@ public class GameView extends SurfaceView {
             System.out.println("Bloques pintados restantes:"+this.grilla.getCantidadBloquesPintados());
             salida=true;
         }
+
         return salida;
     }
+    public boolean verificarContacto2(Bloque b){
+        boolean salida=false;
+        int x=pelota.getPosSiguienteX();
+        int y=pelota.getPosSiguienteY();
+        int anchoPelota=pelota.getTamanio();
+        int alto=pelota.getTamanio();
+
+        Rect rec1=new Rect(x,y,x+anchoPelota,y+alto);
+        int bX=(int)b.getPosX();
+        int by=(int)b.getPosY();
+        int bAncho=(int)(b.getPosX()+b.getAnchoBloque());
+        int bAlto=(int)(b.getPosY()+b.getAltoBloque());
+        Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
+
+        if(rec1.intersect(rec2)){
+
+            controlarChoques();
+            Paint colorChoque = new Paint();
+            colorChoque.setColor(Color.RED);
+            b.setPincel(colorChoque);
+            System.out.println("Bloques pintados restantes:"+this.grilla.getCantidadBloquesPintados());
+            salida=true;
+        }
+
+        return salida;
+    }
+
 
     public void actualizarDireccion(Bloque b){
         int puntoMedioY=pelota.getY()+(pelota.getTamanio()/2);
