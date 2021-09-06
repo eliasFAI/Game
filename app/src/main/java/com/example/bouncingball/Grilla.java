@@ -125,12 +125,22 @@ public class Grilla {
     }
 
     private void pintarNivelDePrueba(){
+        this.cantidadBloquesPintados=6;
+        //Fila0
+        this.matrizBloque[0][0].setDureza(1);
+        this.matrizBloque[0][1].setDureza(1);
+        this.matrizBloque[0][2].setDureza(1);
+        this.matrizBloque[0][3].setDureza(1);
+        this.matrizBloque[0][4].setDureza(1);
+        //Fila1
+        this.matrizBloque[1][0].setDureza(1);
+        /*
         for (int i=0;i<this.matrizBloque.length-9;i++){
             for (int j=0;j<this.matrizBloque[0].length-6;j++){
                 this.matrizBloque[i][j].setDureza(1);
                 this.cantidadBloquesPintados+=1;
             }
-        }
+        }*/
     }
 
     private void pintarNivel0(){

@@ -51,6 +51,7 @@ public class GameView extends SurfaceView {
     //imagen Gano
     private boolean imgSuperoNivel=false;
     private Bitmap bmp;
+    private Bitmap pelotaImg;
 
     private boolean juegoEnPausa=false;
     private boolean siguienteFotograma=false;
@@ -71,7 +72,7 @@ public class GameView extends SurfaceView {
                 System.out.println("Ancho de la pantalla:"+xMax);
                 //Ubicacion del jugador
                 jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 13);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,25, 13);
                 grilla = new Grilla(xMax, yMax, 7, 10, 30);
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
@@ -105,6 +106,8 @@ public class GameView extends SurfaceView {
         pincelJugador.setColor(Color.GREEN);
         pincelIndicadores.setColor(Color.WHITE);
         pincelIndicadores.setTextSize(40f);
+
+
 
 
             //Controles
@@ -162,9 +165,10 @@ public class GameView extends SurfaceView {
                 //Verifica que el bloque todavia no se rompio
                 if(this.grilla.getBloque(i,j).getDureza()==1){
                     //optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
-                    if(!unContacto){
+                    if(!unContacto ){
                         verificarContacto2(this.grilla.getBloque(i,j));
                         unContacto=verificarContacto(this.grilla.getBloque(i,j));
+                        verificarContacto(this.grilla.getBloque(i,j));
                         if(unContacto){
                             this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
 
@@ -192,6 +196,8 @@ public class GameView extends SurfaceView {
     }
 
     private void controlDelJuego(Canvas canvas){
+        pelotaImg= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pelota2),pelota.getTamanio(),pelota.getTamanio(),false);
+
         if (inicioJuego && (pelota.getY() < jugador.getPosY()) && (pelota.getY() > (jugador.getPosY() - 50))) {
             verificarContactoJugador();
         }
@@ -205,13 +211,18 @@ public class GameView extends SurfaceView {
         if (inicioJuego) {
             //Pelota en movimiento
             pelota.actualizarPosicion();
-            canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+
+
+            canvas.drawBitmap(pelotaImg, pelota.getX(), pelota.getY(), null);
+
+            //canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
             //canvas.drawCircle((pelota.getX()+(pelota.getTamanio()/2)),(pelota.getX()+(pelota.getTamanio()/2)), pelota.getTamanio(),pincelPelota);
         } else {
             //La pelota esta en la posicion del jugador
             pelota.setX(jugador.getPosX() + (jugador.getAnchoBloque() / 2));
 
-            canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+            canvas.drawBitmap(pelotaImg, pelota.getX(), pelota.getY(), null);
+            //canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
             //canvas.drawCircle((pelota.getX()+(pelota.getTamanio()/2)),(pelota.getX()+(pelota.getTamanio()/2)), pelota.getTamanio(),pincelPelota);
         }
     }
@@ -431,8 +442,6 @@ public class GameView extends SurfaceView {
         Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
 
         if(rec1.intersect(rec2)){
-
-
             //Colisiono
             actualizarDireccion(b);
             b.setDureza(0);
