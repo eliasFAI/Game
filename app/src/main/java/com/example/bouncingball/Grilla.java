@@ -13,6 +13,7 @@ public class Grilla {
     private int altoDelBloque;
     private int anchoBloque;
     private int nivelActual;
+    private int idBloque;
     private Bloque [][] matrizBloque;
 
 

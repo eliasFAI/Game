@@ -72,7 +72,7 @@ public class GameView extends SurfaceView {
                 System.out.println("Ancho de la pantalla:"+xMax);
                 //Ubicacion del jugador
                 jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,25, 13);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,20, 13);
                 grilla = new Grilla(xMax, yMax, 7, 10, 30);
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
@@ -164,9 +164,9 @@ public class GameView extends SurfaceView {
 
                 //Verifica que el bloque todavia no se rompio
                 if(this.grilla.getBloque(i,j).getDureza()==1){
-                    //optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
-                    if(!unContacto ){
-                        verificarContacto2(this.grilla.getBloque(i,j));
+                    //falta optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
+                    if(!unContacto){
+                        verificarContacto2(this.grilla.getBloque(i,j));// Para hacer pruebas
                         unContacto=verificarContacto(this.grilla.getBloque(i,j));
                         verificarContacto(this.grilla.getBloque(i,j));
                         if(unContacto){
@@ -487,60 +487,79 @@ public class GameView extends SurfaceView {
         boolean chocoDerechaBloque=false;
         boolean chocoIzquierdaBloque=false;
 
-
+        System.out.println("-----------------------------");
+        System.out.println("Actualizando Dirección");
         //Choca en algun costado
         if(b.getPosY()<puntoMedioY && puntoMedioY<(b.getPosY()+b.getAltoBloque())&& (puntoMedioX<b.getPosX() || puntoMedioX>(b.getPosX()+b.getAnchoBloque()))){
             //Choco en algun costado
             chocoCostado=true;
+            System.out.println("****Choco en uno de los costados******");
             if(b.getPosX()>pelota.getX()){
+                System.out.println("############Entro true b.getPosX "+b.getPosX()+" > "+pelota.getX()+" pelota.getX()");
                 //choco en la izquierda
                 chocoIzquierdaBloque=true;
+                System.out.println("=========choco en la izquierda."+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
             }else{
+                System.out.println("############Entro FALSE b.getPosX "+b.getPosX()+" > "+pelota.getX()+" pelota.getX()");
                 //choco en la derecha
                 chocoDerechaBloque=true;
+                System.out.println("=========choco en la derecha"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
             }
         }
+            //Si el punto medio esta dentro de y <puntoMedio<(y+altoBloque)
+            //De acuerdo a la direccion que lleva la pelota, es donde voy a tener un contacto
+            if (pelota.getX() > pelota.getPosAnteriorX()) {
+                System.out.println("****Choco en el medio ------ Se esta moviendo a la derecha******");
+                //Se esta moviendo a la derecha
+                if (pelota.getY() > pelota.getPosAnteriorY()) {
 
-        //Si el punto medio esta dentro de y <puntoMedio<(y+altoBloque)
-        //De acuerdo a la direccion que lleva la pelota, es donde voy a tener un contacto
-        if (pelota.getX() > pelota.getPosAnteriorX()) {
-            //Se esta moviendo a la derecha
-            if (pelota.getY() > pelota.getPosAnteriorY()) {
-                //hacia abajo y a la derecha
-                if(chocoIzquierdaBloque||(pelota.getY()>b.getPosY())){
-                    pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
-                }else{
-                    pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                    //hacia abajo y a la derecha
+                    if(chocoIzquierdaBloque||(pelota.getY()>b.getPosY())){
+                        pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+                        System.out.println("======== hacia abajo y a la derecha 1"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }else{
+                        pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                        System.out.println("======== hacia abajo y a la derecha 2"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }
+                } else {
+                    //Hacia arriba y a la derecha
+                    if(chocoIzquierdaBloque||(pelota.getY()<b.getPosY())){
+                        pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+                        System.out.println("======== Hacia arriba y a la derecha 1"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }else{
+                        pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                        System.out.println("======== Hacia arriba y a la derecha 2"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }
+
                 }
             } else {
-                //Hacia arriba y a la derecha
-                if(chocoIzquierdaBloque||(pelota.getY()<b.getPosY())){
-                    pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
-                }else{
-                    pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                System.out.println("****Choco en el medio ------ Se mueve a la izquierda******");
+                //Se mueve a la izquierda
+                if (pelota.getY() > pelota.getPosAnteriorY()) {
+                    //hacia abajo y a la izquierda
+                    //(pelota.getPosY()>b.getPosY()) Significa que paso el bloque
+                    if(chocoDerechaBloque||(pelota.getY()>b.getPosY())){
+                        pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+                        System.out.println("======== hacia abajo y a la izquierda 1"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }else{
+                        pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                        System.out.println("======== hacia abajo y a la izquierda 2"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }
+                } else {
+                    //Hacia arriba y a la izquierda
+                    if(chocoDerechaBloque||(pelota.getY()<b.getPosY())){
+                        pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+                        System.out.println("======== Hacia arriba y a la izquierda 1"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }else{
+                        pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+                        System.out.println("======== Hacia arriba y a la izquierda 2"+" Bloque posX: "+b.getNroColumna()+" posY:"+b.getNroFila());
+                    }
                 }
 
             }
-        } else {
-            //Se mueve a la izquierda
-            if (pelota.getY() > pelota.getPosAnteriorY()) {
-                //hacia abajo y a la izquierda
-                //(pelota.getPosY()>b.getPosY()) Significa que paso el bloque
-                if(chocoDerechaBloque||(pelota.getY()>b.getPosY())){
-                    pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
-                }else{
-                    pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
-                }
-            } else {
-                //Hacia arriba y a la izquierda
-                if(chocoDerechaBloque||(pelota.getY()<b.getPosY())){
-                    pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
-                }else{
-                    pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
-                }
-            }
 
-        }
+
+
     }
 
     public boolean verificarContactoJugador(){
