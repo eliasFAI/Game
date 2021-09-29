@@ -6,7 +6,7 @@
     maven="Bouncing Ball:app:"
     gradle="7.0.1"
     buildFolder="build"
-    bootClassPath="/root/Android/Sdk/platforms/android-29/android.jar:/root/Android/Sdk/build-tools/30.0.2/core-lambda-stubs.jar"
+    bootClassPath="/home/elias/Android/Sdk/platforms/android-29/android.jar:/home/elias/Android/Sdk/build-tools/30.0.2/core-lambda-stubs.jar"
     javaSourceLevel="1.8"
     compileTarget="android-29"
     neverShrinking="true">

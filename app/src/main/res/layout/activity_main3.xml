@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A1614"
-    tools:context=".Main3Activity">
+    android:orientation="vertical"
+    android:background="#252850">
 
-    <ListView
-        android:id="@+id/LVMostrar"
+    <TextView
+        android:id="@+id/TextPlayers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F2FFFFFF"
-        tools:layout_editor_absoluteX="221dp"
-        tools:layout_editor_absoluteY="245dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="0dp"
+        android:layout_weight=".05"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        android:text="@string/app_jugadorpuntaje"
+        android:textSize="34sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaplayers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".73"
+        android:background="#252850" />
+
+
+    <Button
+        android:id="@+id/anterior"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".07"
+        android:background="@drawable/button_rounded"
+        android:text="@string/app_volver"
+        android:textSize="24sp"
+        tools:ignore="InvalidId" />
+
+
+</LinearLayout>

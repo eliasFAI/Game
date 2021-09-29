@@ -1,37 +1,42 @@
-com/example/bouncingball/AlertaSinVidas.java
- com.example.bouncingball.AlertaSinVidas
- com.example.bouncingball.AlertaSinVidas$1
- com.example.bouncingball.AlertaSinVidas$2
-com/example/bouncingball/Jugador.java
- com.example.bouncingball.Jugador
-com/example/bouncingball/Pelota.java
- com.example.bouncingball.Pelota
+com/example/bouncingball/clases/Jugador.java
+ com.example.bouncingball.clases.Jugador
+com/example/bouncingball/clases/Usuario.java
+ com.example.bouncingball.clases.Usuario
+com/example/bouncingball/clases/Pelota.java
+ com.example.bouncingball.clases.Pelota
+com/example/bouncingball/pruebas/PruebaMod.java
+ com.example.bouncingball.pruebas.PruebaMod
+com/example/bouncingball/clases/Bloque.java
+ com.example.bouncingball.clases.Bloque
+com/example/bouncingball/logica/Grilla.java
+ com.example.bouncingball.logica.Grilla
+com/example/bouncingball/database/DbUser.java
+ com.example.bouncingball.database.DbUser
 com/example/bouncingball/BuildConfig.java
  com.example.bouncingball.BuildConfig
-com/example/bouncingball/Bloque.java
- com.example.bouncingball.Bloque
-com/example/bouncingball/UsuarioDB.java
- com.example.bouncingball.UsuarioDB
-com/example/bouncingball/GameView.java
- com.example.bouncingball.GameView
- com.example.bouncingball.GameView$1
-com/example/bouncingball/Grilla.java
- com.example.bouncingball.Grilla
-com/example/bouncingball/PruebaMod.java
- com.example.bouncingball.PruebaMod
-com/example/bouncingball/Main3Activity.java
- com.example.bouncingball.Main3Activity
-com/example/bouncingball/Main4Activity.java
- com.example.bouncingball.Main4Activity
-com/example/bouncingball/GameThread.java
- com.example.bouncingball.GameThread
-com/example/bouncingball/Usuario.java
- com.example.bouncingball.Usuario
-com/example/bouncingball/Conexion.java
- com.example.bouncingball.Conexion
-com/example/bouncingball/LoginScreen.java
- com.example.bouncingball.LoginScreen
-com/example/bouncingball/MainActivity.java
- com.example.bouncingball.MainActivity
-com/example/bouncingball/Main2Activity.java
- com.example.bouncingball.Main2Activity
+com/example/bouncingball/logica/AlertaSinVidas.java
+ com.example.bouncingball.logica.AlertaSinVidas
+ com.example.bouncingball.logica.AlertaSinVidas$1
+ com.example.bouncingball.logica.AlertaSinVidas$2
+com/example/bouncingball/database/dbConexion.java
+ com.example.bouncingball.database.dbConexion
+com/example/bouncingball/activity/Main4Activity.java
+ com.example.bouncingball.activity.Main4Activity
+com/example/bouncingball/hilos/GameThread.java
+ com.example.bouncingball.hilos.GameThread
+com/example/bouncingball/activity/Main3Activity.java
+ com.example.bouncingball.activity.Main3Activity
+com/example/bouncingball/activity/LoginScreen.java
+ com.example.bouncingball.activity.LoginScreen
+com/example/bouncingball/activity/Main2Activity.java
+ com.example.bouncingball.activity.Main2Activity
+com/example/bouncingball/listas/ListaUsuarioAdapter.java
+ com.example.bouncingball.listas.ListaUsuarioAdapter
+ com.example.bouncingball.listas.ListaUsuarioAdapter$UsuarioviewHolder
+com/example/bouncingball/logica/GameView.java
+ com.example.bouncingball.logica.GameView
+ com.example.bouncingball.logica.GameView$1
+com/example/bouncingball/activity/MainActivity.java
+ com.example.bouncingball.activity.MainActivity
+com/example/bouncingball/activity/Opciones.java
+ com.example.bouncingball.activity.Opciones

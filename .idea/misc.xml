@@ -5,12 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.1828125" />
         <entry key="app/src/main/res/drawable/button_rounded_border.xml" value="0.12685185185185185" />
-        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.1480978260869565" />
         <entry key="app/src/main/res/layout/activity_main4.xml" value="0.1480978260869565" />
+        <entry key="app/src/main/res/layout/activity_opciones.xml" value="0.11231884057971014" />
+        <entry key="app/src/main/res/layout/activity_opciones2.xml" value="0.21" />
         <entry key="app/src/main/res/layout/jugador.xml" value="0.1480978260869565" />
+        <entry key="app/src/main/res/layout/lista_item_players.xml" value="0.20260416666666667" />
       </map>
     </option>
   </component>
