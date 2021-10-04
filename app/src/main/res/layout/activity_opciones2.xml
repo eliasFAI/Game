@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Opciones"
-    android:background="#252850">
+    android:background="#252850"
+    android:onClick="onClickIdioma"
+    tools:context=".activity.Opciones">
 
     <TextView
         android:id="@+id/TexViewPlayers"
@@ -15,43 +16,45 @@
         android:textSize="24sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="44dp"
-         />
+        tools:layout_editor_absoluteY="44dp" />
 
     <Switch
         android:id="@+id/switch3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:onClick="onClickSound"
         android:text="@string/app_sonido"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TexViewPlayers"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
-    <Switch
-        android:id="@+id/switch4"
+    <Button
+        android:id="@+id/button11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/app_idioma"
-        android:textSize="24sp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/button_rounded_border"
+        android:onClick="onClickIdioma"
+        android:text="CAMBIAR IDIOMA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch3"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="@string/app_nivelesjuego"
         android:textSize="34sp"
-        app:layout_constraintTop_toBottomOf="@+id/switch4"
+        app:layout_constraintTop_toBottomOf="@+id/button11"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -59,9 +62,9 @@
         android:id="@+id/checkBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/app_facil"
+        android:layout_marginTop="36dp"
         android:checked="true"
+        android:text="@string/app_facil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +75,7 @@
         android:id="@+id/checkBox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:text="@string/app_intermedio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -83,7 +86,7 @@
         android:id="@+id/checkBox3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:text="@string/app_dificil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -94,29 +97,30 @@
         android:id="@+id/button9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/button_rounded_border"
         android:onClick="onClick"
         android:text="@string/app_validar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
     <Button
         android:id="@+id/button10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_rounded_border"
+        android:onClick="volver"
         android:text="@string/app_volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintVertical_bias="0.563" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

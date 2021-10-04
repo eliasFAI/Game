@@ -52,7 +52,7 @@ public class Grilla {
             posX=posX+borde;
             for(int j=0;j<this.cantidadColumnas;j++){
                 //int dureza=(int)(Math.random()*2);
-                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,pincel,0);
+                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,pincel,0,i,j,id);
                 posX=posX+anchoBloque+5;
                 //posX=posX+anchoBloque;
                 id=id+1;
@@ -130,16 +130,16 @@ public class Grilla {
     }
 
     private void pintarNivelDePrueba(){
-        this.cantidadBloquesPintados=6;
+        this.cantidadBloquesPintados=1;
         //Fila0
         this.matrizBloque[0][0].setDureza(1);
-        this.matrizBloque[0][1].setDureza(1);
-        this.matrizBloque[0][2].setDureza(1);
-        this.matrizBloque[0][3].setDureza(1);
-        this.matrizBloque[0][4].setDureza(1);
+        this.matrizBloque[0][1].setDureza(0);
+        this.matrizBloque[0][2].setDureza(0);
+        this.matrizBloque[0][3].setDureza(0);
+        this.matrizBloque[0][4].setDureza(0);
         //Fila1
-        this.matrizBloque[1][0].setDureza(1);
-        this.matrizBloque[1][4].setDureza(1);
+        this.matrizBloque[1][0].setDureza(0);
+        this.matrizBloque[1][4].setDureza(0);
       //  for (int i=0;i<this.matrizBloque.length-9;i++){
       //      for (int j=0;j<this.matrizBloque[0].length-6;j++){
              //   this.matrizBloque[0][0].setDureza(1);

@@ -20,12 +20,20 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/drawable/finjuego.jpeg"
     },
     {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_lista_item_players.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/lista_item_players.xml"
+    },
+    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/build/generated/res/pngs/release/drawable-anydpi-v24/ic_launcher_foreground.xml"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_activity_main3.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/activity_main3.xml"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout_lista_item_players.xml.flat",
@@ -68,6 +76,14 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_activity_main.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/activity_main.xml"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_activity_login_screen.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/activity_login_screen.xml"
+    },
+    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },
@@ -104,8 +120,16 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_login_screen.xml"
     },
     {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_activity_opciones2.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/activity_opciones2.xml"
+    },
+    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout-land_activity_main2.xml.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout-land/activity_main2.xml"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher.png.flat",
@@ -130,6 +154,10 @@
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/raw_soundtheme.mp3.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/raw/soundtheme.mp3"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable_ball.png.flat",

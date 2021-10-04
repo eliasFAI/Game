@@ -2,7 +2,9 @@ package com.example.bouncingball.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -15,25 +17,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     MediaPlayer mp ;
-    Button siguiente ;
-    Button ranking ;
+    Button jugar,ranking ,opciones,salir;
     TextView mostrar_user ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* ranking =(Button) findViewById(R.id.btnRanking);
-        ranking.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                Intent rank = new Intent(MainActivity.this,Main3Activity.class);
-                startActivity(rank);
-
-
-            }
-        });*/
        recibirDatos();
+
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Carga Activity.
+        actualizarIdioma();
 
     }
     public void recibirDatos(){
@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         String name_user = extra.getString("id_user");
         mostrar_user = (TextView) findViewById(R.id.textV);
         mostrar_user.setText(name_user);
+        jugar = (Button) findViewById(R.id.button5);
+        ranking = (Button) findViewById(R.id.button6);
+        opciones = (Button) findViewById(R.id.button7);
+        salir = (Button) findViewById(R.id.button8);
 
     }
     public void play(View v){
@@ -68,25 +72,29 @@ public class MainActivity extends AppCompatActivity {
         finishAffinity();
         System.exit(0);
     }
-    public void sonido(View v){
+    private void actualizarIdioma(){
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
-        if(mp!=null){
+        String idioma_user = preferences.getString("idioma","es");
 
-            mp.release();
+        if(idioma_user.equalsIgnoreCase("es")){
+
+          jugar.setText("JUGAR");
+          ranking.setText("RANKING");
+          opciones.setText("OPCIONES");
+          salir.setText("SALIR");
+
+
         }
-        mp = MediaPlayer.create(this,R.raw.play);
-        mp.seekTo(0);
-        mp.start();
-        mp.setLooping(true);
-    }
-    public void silencio (View v){
-        /*Por ahora funciona */
-        if(mp!=null){
+        else{
 
-            mp.stop();
+            jugar.setText("PLAY");
+            ranking.setText("RANKING");
+            opciones.setText("OPTION");
+            salir.setText("EXIT");
+
         }
 
-      //  mp.setLooping(false);
     }
 
 

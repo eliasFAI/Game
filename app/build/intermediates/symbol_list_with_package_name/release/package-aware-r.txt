@@ -1830,6 +1830,7 @@ id bottom
 id bounce
 id button
 id button10
+id button11
 id button2
 id button3
 id button4
@@ -1940,6 +1941,7 @@ id homeAsUp
 id honorRequest
 id icon
 id icon_group
+id idJugadorPuntajeMax
 id ifRoom
 id ignore
 id ignoreRequest
@@ -1947,6 +1949,7 @@ id image
 id imageView
 id imageView2
 id imageView3
+id imageView4
 id info
 id invisible
 id inward
@@ -2115,7 +2118,6 @@ id stretch
 id submenuarrow
 id submit_area
 id switch3
-id switch4
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2346,6 +2348,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw play
+raw soundtheme
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

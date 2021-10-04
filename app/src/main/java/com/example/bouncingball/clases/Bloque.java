@@ -31,7 +31,7 @@ public class Bloque {
         this.puntaje=100;
     }
 
-    public Bloque (int posX, int posY, int ancho, int alto, Paint pincel, int est){
+    public Bloque (int posX, int posY, int ancho, int alto, Paint pincel, int est, int nroColumna, int nroFila, int id){
         this.posX=posX;
         this.posY=posY;
         this.anchoBloque=ancho;
@@ -40,6 +40,10 @@ public class Bloque {
         this.dureza=est;
         this.id=id;
         this.puntaje=100;
+
+        this.nroColumna=nroColumna;
+        this.nroFila=nroFila;
+
     }
 
     public int getLeft(){

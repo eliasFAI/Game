@@ -19,6 +19,8 @@ import com.example.bouncingball.clases.Bloque;
 import com.example.bouncingball.clases.Pelota;
 import com.example.bouncingball.hilos.GameThread;
 
+import java.util.ArrayList;
+
 
 public class GameView extends SurfaceView {
     //Pinceles
@@ -55,6 +57,8 @@ public class GameView extends SurfaceView {
     private boolean juegoEnPausa=false;
     private boolean siguienteFotograma=false;
 
+    private boolean futuroContacto=false;
+
     public GameView(Context context) {
         super(context);
         SurfaceHolder holder = getHolder();
@@ -68,18 +72,16 @@ public class GameView extends SurfaceView {
                 cayo = false;
                 xMax = getWidth();
                 yMax = getHeight();
-
+                System.out.println("Ancho de la pantalla:"+xMax);
                 //Ubicacion del jugador
-              //  jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
+                //  jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
                 jugador=new Bloque(165,300,250,40);
-               // pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-               // pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,35, 15);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,36, 15);
+                // pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
                 //grilla = new Grilla(xMax, yMax, 7, 10, 25);
                 grilla = new Grilla(xMax, yMax, 7, 10, 80);
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
-
 
                 //gameThread.setRunning(true);
 
@@ -128,9 +130,15 @@ public class GameView extends SurfaceView {
                 //actualizamos las posiciones
                 if (!cayo) {
                     //Verifico contacto si la posicion es menor que
-                    this.recorrerBloquesYPintar(canvas);
+
+                    this.verificarContactosMultiples(canvas);
+                    this.pintarGrilla(canvas);
+
+
+                    //Aca va el metodo pintar grilla
                     this.controlDelJuego(canvas);
                     testPausarJuego();
+
                 } else {
                     //La pelota pasa al jugador
                     this.restarVida();
@@ -155,6 +163,133 @@ public class GameView extends SurfaceView {
             siguienteFotograma=false;
         }
     }
+
+    //Metodos del Juego
+    private ArrayList<Bloque> obtenerBloquesChocados(){
+        boolean unContacto = false;
+        int contarContactos=0;
+        Bloque [] arreBloqueContacto=new Bloque[3];
+
+        ArrayList<Bloque> listaBloque = new ArrayList<Bloque>();
+        //Recorre todas las filas verificando si la pelota tuvo algun contacto
+        for (int i=0;i<this.grilla.getCantidadFilas();i++){
+            for (int j=0;j<this.grilla.getCantidadColumnas();j++){
+                //Verifica que el bloque todavia no se rompio
+                if(this.grilla.getBloque(i,j).getDureza()==1){
+                    //optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
+                    unContacto=verificarContacto(this.grilla.getBloque(i,j));
+                    if(unContacto){
+                        // Para hacer pruebas
+                        //Guardo el bloque que hizo contacto
+                        listaBloque.add(this.grilla.getBloque(i,j));
+                        arreBloqueContacto[contarContactos]=this.grilla.getBloque(i,j);
+                        this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
+                        contarContactos++;
+                    }
+                }
+            }
+        }
+        return listaBloque;
+    }
+
+    private void verificarContactosMultiples(Canvas canvas){
+        Bloque [] arreBloqueContacto;
+        ArrayList<Bloque> listaBloque;
+        listaBloque=this.obtenerBloquesChocados();
+
+
+        if(listaBloque.size()==1){
+            Bloque b=listaBloque.get(0);
+            contactoUnBloque(b);
+        }
+        if(listaBloque.size()==2){
+            Bloque b1=listaBloque.get(0);
+            Bloque b2=listaBloque.get(1);
+            contactoDosBloques(b1,b2);
+        }
+        if(listaBloque.size()==3){
+            Bloque b1=listaBloque.get(0);
+            Bloque b2=listaBloque.get(1);
+            Bloque b3=listaBloque.get(2);
+            contactoTresBloques(b1,b2,b3);
+        }
+
+    }
+    private void contactoUnBloque(Bloque b){
+
+        actualizarDireccion2(b);
+        //  colisionBloqueAux(b);
+        b.setDureza(0);
+        this.grilla.restarBloquesPintados();
+    }
+    private void contactoDosBloques(Bloque b1, Bloque b2){
+        //Estan horizontal
+        if(b1.getNroFila()==b2.getNroFila()){
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            b1.setDureza(0);
+            b2.setDureza(0);
+            System.out.println("Bloques estan horizontal");
+            pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+        }
+        //Estan vertical
+        if(b1.getNroColumna()==b2.getNroColumna()){
+            System.out.println("Bloques estan Vertical");
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            b1.setDureza(0);
+            b2.setDureza(0);
+            pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+        }
+        //Estan en diagonal
+        if(b1.getNroColumna()!=b2.getNroColumna()&&b1.getNroFila()!=b2.getNroFila()){
+            System.out.println("Bloques estan diagonal");
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            b1.setDureza(0);
+            b2.setDureza(0);
+            pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+            pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+        }
+
+    }
+    private void contactoTresBloques(Bloque b1, Bloque b2, Bloque b3){
+        System.out.println("Contacto Tres Bloques ");
+        //Caso 1
+        if(b2.getNroColumna()!=b3.getNroColumna()&&b2.getNroFila()!=b3.getNroFila()){
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            System.out.println("Caso 1 ");
+            b2.setDureza(0);
+            b3.setDureza(0);
+            pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+            pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+        }
+        //Caso 2 y caso 4
+        if(b1.getNroColumna()!=b3.getNroColumna()&&b1.getNroFila()!=b3.getNroFila()){
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            System.out.println("Caso 2 y 4 ");
+            b1.setDureza(0);
+            b3.setDureza(0);
+            pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+            pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+        }
+        //Caso 3
+        if(b1.getNroColumna()!=b2.getNroColumna()&&b1.getNroFila()!=b2.getNroFila()){
+            //Tiene que desaparecer los dos y la dirección solo cambia eje Y
+            System.out.println("Caso 3 ");
+            b1.setDureza(0);
+            b2.setDureza(0);
+            pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+            pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+        }
+
+
+
+    }
+    private void actualizarBloqueContacto(Bloque b){
+
+        actualizarDireccion2(b);
+        //  colisionBloqueAux(b);
+        b.setDureza(0);
+        this.grilla.restarBloquesPintados();
+    }
     private void testPausarJuego(){
         boolean unContacto = false;
         int i=0;
@@ -169,65 +304,17 @@ public class GameView extends SurfaceView {
             i++;
         }
     }
-    //Metodos del Juego
-    private void recorrerBloquesYPintar(Canvas canvas){
-        boolean unContacto = false ,unContacto1=false ,unContacto2=false;
-        //Recorre todas las filas verificando si la pelota tuvo algun contacto
-        int i =0 ,j=0 ;
-        while(i<this.grilla.getCantidadFilas() &&(!unContacto)){
-            j=0;
-            while(j<this.grilla.getCantidadColumnas() &&(!unContacto)){
-
-                //Verifica que el bloque todavia no se rompio
-                if(this.grilla.getBloque(i,j).getDureza()==1){
-                    unContacto=verificarContacto(this.grilla.getBloque(i,j));
-                    if(unContacto){
-                               if((j+1)<this.grilla.getCantidadColumnas() && this.grilla.getBloque(i,(j+1)).getDureza()==1 &&
-                                  (i+1)<this.grilla.getCantidadFilas() && this.grilla.getBloque((i+1),j).getDureza()==1 ){
-
-                                     unContacto1=verificarContacto(this.grilla.getBloque(i,(j+1)));
-                                     unContacto2 = verificarContacto(this.grilla.getBloque((i+1), j));
-
-                                     if((!unContacto1) && (!unContacto2)){
-                                       actualizarDireccion2(this.grilla.getBloque(i,j));
-                                       this.grilla.getBloque(i,j).setDureza(0);
-                                       this.grilla.restarBloquesPintados();
-                                       this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
-                                     }else{
-                                       unContacto = false ;
-                                     }
-
-                              }else{
-                            actualizarDireccion2(this.grilla.getBloque(i,j));
-                            this.grilla.getBloque(i,j).setDureza(0);
-                            this.grilla.restarBloquesPintados();
-                            this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
-
-                            }
-
-                    }
-
-                    }
-                j++;
-                }
-                i++;
-            }
-
-        pintarGrillaAux(canvas);
-    }
-
-    private void pintarGrillaAux(Canvas canvas){
-
+    private void pintarGrilla(Canvas canvas){
         for (int i=0;i<this.grilla.getCantidadFilas();i++){
             for (int j=0;j<this.grilla.getCantidadColumnas();j++){
-                if(this.grilla.getBloque(i,j).getDureza()==1) {
-                    canvas.drawRect(this.grilla.getBloque(i, j).getPosX(), this.grilla.getBloque(i, j).getPosY(),
-                            this.grilla.getBloque(i, j).getPosX() + this.grilla.getBloque(i, j).getAnchoBloque(),
-                            this.grilla.getBloque(i, j).getPosY() + this.grilla.getBloque(i, j).getAltoBloque(), this.grilla.getBloque(i, j).getPincel());
+                //Este metodo dibuja la grilla creada anteriormente.
+                if(this.grilla.getBloque(i,j).getDureza()==1){
+                    canvas.drawRect(this.grilla.getBloque(i,j).getPosX(),this.grilla.getBloque(i,j).getPosY(),
+                            this.grilla.getBloque(i,j).getPosX()+this.grilla.getBloque(i,j).getAnchoBloque(),
+                            this.grilla.getBloque(i,j).getPosY()+this.grilla.getBloque(i,j).getAltoBloque(),this.grilla.getBloque(i,j).getPincel());
                 }
             }
         }
-
     }
 
     private void nivelSuperado(Canvas canvas){
@@ -256,23 +343,29 @@ public class GameView extends SurfaceView {
         }
         if (inicioJuego) {
             //Pelota en movimiento
+            /*
+            if(futuroContacto){
+                pelota.actualizarPosicion2();
+            }else{
+                pelota.actualizarPosicion();
+            }*/
             pelota.actualizarPosicion();
             canvas.drawBitmap(pelotaImg, pelota.getX(), pelota.getY(), null);
-            //canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+           // canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
         } else {
             //La pelota esta en la posicion del jugador
             pelota.setX(jugador.getPosX() + (jugador.getAnchoBloque() / 2));
 
             canvas.drawBitmap(pelotaImg, pelota.getX(), pelota.getY(), null);
 
-            //canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
+           // canvas.drawRect(pelota.getX(), pelota.getY(), pelota.getX() + pelota.getTamanio(), pelota.getY() + pelota.getTamanio(), pincelPelota);
         }
     }
 
     private void restarVida(){
         vidas += -1;
         //Reubicar la pelota cuando se cae
-       this.reubicarPelota();
+        this.reubicarPelota();
         //canvas.drawRect(pelota.getPosX(), pelota.getPosY(), pelota.getPosX() + pelota.getTamanio(), pelota.getPosY() + pelota.getTamanio(), pincelPelota);
         cayo = false;
         inicioJuego=false;
@@ -316,7 +409,7 @@ public class GameView extends SurfaceView {
     private void reubicarPelota(){
         pelota.setX(jugador.getPosX() + (jugador.getAnchoBloque() / 2));
         pelota.setY(jugador.getPosY()- pelota.getTamanio()-2);
-        pelota.setDireccionEnX(- pelota.getVelocidad());
+        pelota.setDireccionEnX(-pelota.getVelocidad());
         pelota.setDireccionEnY(-pelota.getVelocidad());
     }
 
@@ -334,12 +427,12 @@ public class GameView extends SurfaceView {
         // MotionEvent.ACTION_DOWN
         if(imgFinJuego || imgSuperoNivel){
             if (evento.getAction() == MotionEvent.ACTION_UP) {
-                System.out.println("pulso la pantalla 111111");
+                //System.out.println("pulso la pantalla 111111");
                 //Si perdio o gano
                 if(posDedoX>50&&posDedoX<(xMax-50)){
                     if(posDedoY>600&&posDedoY<(yMax-300)){
                         gameThread.continuar();
-                        System.out.println("Continuar jugando");
+                        //System.out.println("Continuar jugando");
                         imgFinJuego=false;
                         imgSuperoNivel=false;
                     }
@@ -347,7 +440,7 @@ public class GameView extends SurfaceView {
             }
         }else{
             if(evento.getAction() == MotionEvent.ACTION_UP){
-                System.out.println("Pulso la pantalla *********************");
+                //System.out.println("Pulso la pantalla *********************");
                 inicioJuego = true;
                 pantallaPulsada = false;
             }
@@ -359,31 +452,30 @@ public class GameView extends SurfaceView {
             if(posDedoX>50&&posDedoX<(xMax-50)){
                 if(posDedoY>10&&posDedoY<300){
                     gameThread.continuar();
-                    System.out.println("Continuar jugando Boton Segui jugando");
+                    System.out.println("Continuar jugando Boton Segui jugando #0# ");
 
                 }
             }
         }
         if(juegoEnPausa && !siguienteFotograma){
-            if (evento.getAction() == MotionEvent.ACTION_UP){
+            if (evento.getAction() == MotionEvent.ACTION_UP) {
                 if(posDedoX>xMax-100){
                     if(posDedoY>yMax-100){
                         gameThread.continuar();
-                        System.out.println("Continuar jugando Boton Segui jugando");
+                        System.out.println("Continuar jugando Boton Segui jugando [1] ");
                         siguienteFotograma=true;
                     }
                 }
-
             }
 
         }
 
         if(juegoEnPausa && !siguienteFotograma){
-            if (evento.getAction() == MotionEvent.ACTION_UP){
+            if (evento.getAction() == MotionEvent.ACTION_UP) {
                 if(posDedoX<100){
                     if(posDedoY>yMax-100){
                         gameThread.continuar();
-                        System.out.println("Continuar jugando Boton Segui jugando");
+                        System.out.println("Continuar jugando Boton Segui jugando *2* ");
 
                     }
                 }
@@ -437,6 +529,7 @@ public class GameView extends SurfaceView {
         }
 
     }
+
     public boolean verificarContacto2(Bloque b){
         boolean salida=false;
         int x=pelota.getPosSiguienteX();
@@ -452,7 +545,33 @@ public class GameView extends SurfaceView {
         Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
 
         if(rec1.intersect(rec2)){
+            /*
+            x=pelota.getX();
+            y=pelota.getY();
+            boolean contacto=false;
+            int cantFaltaX=0;
+            int cantFaltaY=0;
+            while(!contacto){
+                x=x-1;
+                y=y-1;
+                rec1=new Rect(x,y,x+anchoPelota,y+alto);
+                if(rec1.intersect(rec2)){
+                    contacto=true;
+                }
+                cantFaltaX++;
+                cantFaltaY++;
+            }
+            //pelota.setCantFaltaX(cantFaltaX+1);
+            //pelota.setCantFaltaY(cantFaltaY+1);
+            System.out.println("La cantidad que falta para el bloque ("+b.getNroColumna()+", "+b.getNroFila()+  ") es: X "+cantFaltaX+" Y= "+cantFaltaY);
+            */
+
+
             controlarChoques();
+            Paint colorChoque = new Paint();
+            colorChoque.setColor(Color.RED);
+            b.setPincel(colorChoque);
+
             salida=true;
         }
 
@@ -498,8 +617,10 @@ public class GameView extends SurfaceView {
         boolean salida=false;
         int x=pelota.getX();
         int y=pelota.getY();
-        int cx = pelota.getX()+18;
-        int cy = pelota.getY()+18;
+
+        int cx=pelota.getX()+(pelota.getTamanio()/2);
+        int cy=pelota.getY()+(pelota.getTamanio()/2);
+
         int anchoPelota=pelota.getTamanio();
         int alto=pelota.getTamanio();
 
@@ -510,10 +631,14 @@ public class GameView extends SurfaceView {
         int bAlto=(int)(b.getPosY()+b.getAltoBloque());
         Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
 
+        //if(rec1.intersect(rec2)){
+        // if(rec1.intersect(rec2,x,y,anchoPelota/2)){
+        //if(intersect(rec2,x,y,anchoPelota/2)){
+        if(interseccion(cx,cy,anchoPelota/2,rec2)){
+            System.out.println("---------Se detecto una intersección con el bloque: "+b.getId());
 
-           if(interseccion(cx,cy,anchoPelota/2,rec2)){
             salida=true;
-           }
+        }
         return salida;
     }
 
@@ -526,52 +651,18 @@ public class GameView extends SurfaceView {
         float closestY = MathUtils.clamp(cy, rect.top, rect.bottom);
 
         // Calculate the distance between the circle's center and this closest point
-        float distanceX = cx - closestX;
-        float distanceY = cy - closestY;
+        float distanceX = cx - closestX;//5 - 4=1
+        float distanceY = cy - closestY;//4 - 3=1
 
-            // If the distance is less than the circle's radius, an intersection occurs
-            float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-            if(distanceSquared < (radio * radio)){
-                band  = true ;
-            }
+        // If the distance is less than the circle's radius, an intersection occurs
+        float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);//2
+        //2<100
+        if(distanceSquared < (radio * radio)){
+            band  = true ;
+        }
 
 
         return band ;
-    }
-    public static int interseccion_AreaInternaBloque(int cx ,int cy ,int radio ,Rect [] rectArea){
-        /*
-        * La idea de este metodo sera de poder encontrar el rectangulo mas proximo
-        * a la colision ,buscar el que tenga la distancia mas menor
-        * */
-        int  posArea = 100 ,i=0;
-        float MinDistancia = 1000 ;
-        Rect rect =null;
-        while(i<rectArea.length) {
-
-            rect = rectArea[i];
-            // clamp(value, min, max) - limits value to the range min..max
-
-            // Find the closest point to the circle within the rectangle
-            float closestX = MathUtils.clamp(cx, rect.left, rect.right);
-            float closestY = MathUtils.clamp(cy, rect.top, rect.bottom);
-
-            // Calculate the distance between the circle's center and this closest point
-            float distanceX = cx - closestX;
-            float distanceY = cy - closestY;
-
-            // If the distance is less than the circle's radius, an intersection occurs
-            float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-            if (distanceSquared < (radio * radio) ) {
-
-                  if(distanceSquared<MinDistancia){
-                      MinDistancia = distanceSquared;
-                      posArea = i ;
-                  }
-            }
-            i++;
-        }
-
-        return posArea ;
     }
 
     public void actualizarDireccion2(Bloque b) {
@@ -625,6 +716,7 @@ public class GameView extends SurfaceView {
         updateDireccion(posArea);
 
     }
+
     private void updateDireccion(int area){
         if(area == 1 || area == 6){
             System.out.println("choco en el area "+area+" en uno de los centros");
@@ -682,22 +774,22 @@ public class GameView extends SurfaceView {
         int y=pelota.getPosSiguienteY()-7;
         int anchoPelota=pelota.getTamanio();
         int alto=pelota.getTamanio();
-        //System.out.println("entro a verificar");
+        System.out.println("entro a verificar");
         Rect rec1=new Rect(x,y,x+anchoPelota,y+alto);
         Rect rec2=new Rect(jugador.getPosX(), jugador.getPosY(), jugador.getPosX()+jugador.getAnchoBloque(), jugador.getPosY()+jugador.getAltoBloque());
 
         if(rec1.intersect(rec2)/*||(y+alto)==posYJugador*/){
 
             //Colisiono
-           // System.out.println("----------------------------Choco valor Pelota x: "+x+" valor y "+ y);
-           // System.out.println("----------------------------Choco valor Jugador x: "+jugador.getPosX()+" valor y "+ jugador.getPosY());
+            //System.out.println("----------------------------Choco valor Pelota x: "+x+" valor y "+ y);
+            //System.out.println("----------------------------Choco valor Jugador x: "+jugador.getPosX()+" valor y "+ jugador.getPosY());
             actualizarDireccionPelota();
 
             salida=true;
             //gameThread.pause();
         }else{
-           // System.out.println("No choco valor Pelota x: "+x+" valor y "+ y);
-          //  System.out.println("No choco valor Jugador x: "+jugador.getPosX()+" valor y "+ jugador.getPosY());
+            //System.out.println("No choco valor Pelota x: "+x+" valor y "+ y);
+            //System.out.println("No choco valor Jugador x: "+jugador.getPosX()+" valor y "+ jugador.getPosY());
             //gameThread.pause();
         }
         return salida;
@@ -711,7 +803,7 @@ public class GameView extends SurfaceView {
         int cuadro1 = jugador.getAnchoBloque() / 5;
         if (pelota.getX() < (jugador.getPosX() + (cuadro1 * 1))) {
             //choco en el primer cuadrante
-            //System.out.println("choco en el primer cuadrante");
+            System.out.println("choco en el primer cuadrante");
             //Verifico en cual angulo venia
             if (pelota.getX() < pelota.getPosAnteriorX()) {
                 //venia de derecha a izquierda
@@ -733,7 +825,7 @@ public class GameView extends SurfaceView {
         if (pelota.getX() > (jugador.getPosX() + (cuadro1 * 1)) && pelota.getX() < (jugador.getPosX()+ (cuadro1 * 2))) {
             //choco en el segundo cuadrante
             //Verifico en cual angulo venia
-           // System.out.println("choco en el segundo cuadrante");
+            System.out.println("choco en el segundo cuadrante");
             if (pelota.getX() < pelota.getPosAnteriorX()) {
                 //venia de derecha a izquierda
                 //66%
@@ -749,7 +841,7 @@ public class GameView extends SurfaceView {
         }
         if (pelota.getX() > (jugador.getPosX() + (cuadro1 * 2)) && pelota.getX() < (jugador.getPosX() + (cuadro1 * 3))) {
             //choco en el tercer cuadrante
-           // System.out.println("choco en el tercer cuadrante");
+            System.out.println("choco en el tercer cuadrante");
             //Verifico en cual angulo venia
             //en el cuadrante del centro solo actualizo el y
             pelota.setDireccionEnY(-1*pelota.getVelocidad());
@@ -757,7 +849,7 @@ public class GameView extends SurfaceView {
         }
         if (pelota.getX() > (jugador.getPosX() + (cuadro1 * 3)) && pelota.getX() < (jugador.getPosX() + (cuadro1 * 4))) {
             //choco en el cuarto cuadrante
-           // System.out.println("choco en el cuarto cuadrante");
+            System.out.println("choco en el cuarto cuadrante");
             //Verifico en cual angulo venia
 
             if (pelota.getX() < pelota.getPosAnteriorX()) {
@@ -790,6 +882,16 @@ public class GameView extends SurfaceView {
             }
         }
 
+        /*
+        if(pelota.getDireccionEnY()>0){
+            pelota.setDireccionEnY(-1*(pelota.getVelocidad()));
+        }
+        */
+
     }
+
+
+
+
 
 }
