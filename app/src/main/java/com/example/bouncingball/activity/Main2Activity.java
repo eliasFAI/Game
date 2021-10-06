@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class Main2Activity extends AppCompatActivity {
     private EditText email ;
     private dbConexion dao ;
     private Button btn_aceptar ;
+    private MediaPlayer mp ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,9 @@ public class Main2Activity extends AppCompatActivity {
         clave = findViewById(R.id.editClave);
         email = findViewById(R.id.editEmail);
         btn_aceptar =(Button)findViewById(R.id.button4);
+        mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
+
     }
     protected void onResume() {
         super.onResume();
@@ -65,7 +69,7 @@ public class Main2Activity extends AppCompatActivity {
     }
     public void guardar(View view){
 
-
+       mp.start();
        Usuario a = new Usuario (usuario.getText().toString(),clave.getText().toString(),email.getText().toString(),"0");
 
         if(!usuario.getText().toString().isEmpty() && !clave.getText().toString().isEmpty() && !email.getText().toString().isEmpty())

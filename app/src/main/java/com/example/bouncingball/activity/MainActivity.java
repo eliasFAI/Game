@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mp = MediaPlayer.create(this,R.raw.clic);
 
        recibirDatos();
 
@@ -49,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void play(View v){
-
+        mp.start();
         Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
         startActivity(jugar);
     }
     public void mostrar(View v){
-
+     mp.start();
      Intent mostrarActivity = new Intent(MainActivity.this, Main3Activity.class);
         mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
      startActivity(mostrarActivity);
@@ -62,12 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void opciones(View v){
+        mp.start();
         Intent k = new Intent(MainActivity.this, Opciones.class);
         k.putExtra("id_user2",mostrar_user.getText().toString());
         startActivity(k);
 
     }
     public void exit(View v){
+        mp.start();
         super.onBackPressed();
         finishAffinity();
         System.exit(0);

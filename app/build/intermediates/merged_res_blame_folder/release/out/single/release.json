@@ -1,7 +1,7 @@
 [
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/raw_clic.mp3.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/raw/clic.mp3"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout_activity_main4.xml.flat",
@@ -10,6 +10,14 @@
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout_activity_main.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable-xxxhdpi_ic_launcher_background.png.flat",
@@ -36,16 +44,8 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_main2.xml"
     },
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable-xxhdpi_ic_launcher_background.png.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/build/generated/res/pngs/release/drawable-xxhdpi/ic_launcher_background.png"
-    },
-    {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable-hdpi_ic_launcher_background.png.flat",
@@ -56,16 +56,8 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/drawable/ganaste.jpeg"
     },
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout_activity_main3.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_main3.xml"
-    },
-    {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -78,14 +70,6 @@
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/raw_play.mp3.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/raw/play.mp3"
-    },
-    {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable-mdpi_ic_launcher_background.png.flat",
@@ -104,12 +88,12 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_login_screen.xml"
     },
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/drawable_user2.png.flat",
@@ -128,10 +112,6 @@
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/build/generated/res/pngs/release/drawable-ldpi/ic_launcher_background.png"
     },
     {
-        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/raw_soundtheme.mp3.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/raw/soundtheme.mp3"
     },
@@ -146,5 +126,9 @@
     {
         "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/layout_activity_opciones2.xml.flat",
         "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/layout/activity_opciones2.xml"
+    },
+    {
+        "merged": "/home/elias/Escritorio/Branch_Game/Game/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/elias/Escritorio/Branch_Game/Game/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png"
     }
 ]

@@ -26,10 +26,12 @@ public class Opciones extends AppCompatActivity {
     private Button b1 ,b2 ,b5,btn_sonido;
     private EditText usuario ;
     private EditText clave;
+    private MediaPlayer mpclic ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opciones2);
+        mpclic = MediaPlayer.create(this,R.raw.clic);
 
         recibir_date();
         c1 = (CheckBox) findViewById(R.id.checkBox);
@@ -56,7 +58,7 @@ public class Opciones extends AppCompatActivity {
         mostrar_user.setText(name_user);
     }
     public void onClick(View v){
-
+         mpclic.start();
          if(v.getId()==R.id.button9){
             validar();
          }
@@ -81,6 +83,7 @@ public class Opciones extends AppCompatActivity {
 
     public void onClickIdioma(View v){
 
+        mpclic.start();
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         String idioma_user = preferences.getString("idioma","es");
@@ -135,7 +138,7 @@ public class Opciones extends AppCompatActivity {
 
     }
     public void onClickSound(View v){
-
+          mpclic.start();
             if (mp != null) {
 
                 mp.release();
@@ -148,6 +151,7 @@ public class Opciones extends AppCompatActivity {
 
     }
     public void volver(View v){
+        mpclic.start();
         Intent menu = new Intent(Opciones.this, MainActivity.class);
         startActivity(menu);
     }

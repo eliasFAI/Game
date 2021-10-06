@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class Main3Activity extends AppCompatActivity {
     private dbConexion db;
     private RecyclerView listaplayers;
     private TextView mostrar_user ,puntajemax;
+    private MediaPlayer mp ;
 
 
     @Override
@@ -35,6 +37,7 @@ public class Main3Activity extends AppCompatActivity {
         listaplayers = findViewById(R.id.listaplayers);
         listaplayers.setLayoutManager(new LinearLayoutManager(this));
         puntajemax = (TextView)findViewById(R.id.idJugadorPuntajeMax);
+        mp = MediaPlayer.create(this,R.raw.clic);
         //lista = (ListView) findViewById(R.id.LVMostrar);
         //db  = new DbUser(this);
         recibir_date();
@@ -80,7 +83,7 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     public void anterior(View v) {
-
+        mp.start();
         Intent k = new Intent(Main3Activity.this, MainActivity.class);
         startActivity(k);
 
