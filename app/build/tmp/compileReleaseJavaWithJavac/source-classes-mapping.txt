@@ -1,12 +1,11 @@
-com/example/bouncingball/activity/Main3Activity.java
- com.example.bouncingball.activity.Main3Activity
-com/example/bouncingball/activity/Main2Activity.java
- com.example.bouncingball.activity.Main2Activity
+com/example/bouncingball/clases/Pelota.java
+ com.example.bouncingball.clases.Pelota
+com/example/bouncingball/clases/Usuario.java
+ com.example.bouncingball.clases.Usuario
 com/example/bouncingball/hilos/GameThread.java
  com.example.bouncingball.hilos.GameThread
-com/example/bouncingball/listas/ListaUsuarioAdapter.java
- com.example.bouncingball.listas.ListaUsuarioAdapter
- com.example.bouncingball.listas.ListaUsuarioAdapter$UsuarioviewHolder
+com/example/bouncingball/pruebas/PruebaMod.java
+ com.example.bouncingball.pruebas.PruebaMod
 com/example/bouncingball/activity/Main4Activity.java
  com.example.bouncingball.activity.Main4Activity
 com/example/bouncingball/logica/Grilla.java
@@ -21,22 +20,23 @@ com/example/bouncingball/logica/AlertaSinVidas.java
  com.example.bouncingball.logica.AlertaSinVidas$2
 com/example/bouncingball/database/dbConexion.java
  com.example.bouncingball.database.dbConexion
-com/example/bouncingball/activity/MainActivity.java
- com.example.bouncingball.activity.MainActivity
-com/example/bouncingball/activity/LoginScreen.java
- com.example.bouncingball.activity.LoginScreen
-com/example/bouncingball/activity/Opciones.java
- com.example.bouncingball.activity.Opciones
+com/example/bouncingball/clases/Jugador.java
+ com.example.bouncingball.clases.Jugador
+com/example/bouncingball/clases/Bloque.java
+ com.example.bouncingball.clases.Bloque
+com/example/bouncingball/activity/Main3Activity.java
+ com.example.bouncingball.activity.Main3Activity
 com/example/bouncingball/logica/GameView.java
  com.example.bouncingball.logica.GameView
  com.example.bouncingball.logica.GameView$1
-com/example/bouncingball/clases/Bloque.java
- com.example.bouncingball.clases.Bloque
-com/example/bouncingball/pruebas/PruebaMod.java
- com.example.bouncingball.pruebas.PruebaMod
-com/example/bouncingball/clases/Usuario.java
- com.example.bouncingball.clases.Usuario
-com/example/bouncingball/clases/Pelota.java
- com.example.bouncingball.clases.Pelota
-com/example/bouncingball/clases/Jugador.java
- com.example.bouncingball.clases.Jugador
+com/example/bouncingball/activity/Main2Activity.java
+ com.example.bouncingball.activity.Main2Activity
+com/example/bouncingball/listas/ListaUsuarioAdapter.java
+ com.example.bouncingball.listas.ListaUsuarioAdapter
+ com.example.bouncingball.listas.ListaUsuarioAdapter$UsuarioviewHolder
+com/example/bouncingball/activity/LoginScreen.java
+ com.example.bouncingball.activity.LoginScreen
+com/example/bouncingball/activity/MainActivity.java
+ com.example.bouncingball.activity.MainActivity
+com/example/bouncingball/activity/Opciones.java
+ com.example.bouncingball.activity.Opciones

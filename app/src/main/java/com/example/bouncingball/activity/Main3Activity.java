@@ -70,7 +70,7 @@ public class Main3Activity extends AppCompatActivity {
 
         if(idioma_user.equalsIgnoreCase("es")){
 
-         puntajemax.setText("Jugador     Puntaje Max");
+         puntajemax.setText("Jugador Puntaje Max");
 
         }
         else{

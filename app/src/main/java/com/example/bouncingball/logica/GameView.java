@@ -1,5 +1,6 @@
 package com.example.bouncingball.logica;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -17,6 +18,7 @@ import androidx.core.math.MathUtils;
 import com.example.bouncingball.R;
 import com.example.bouncingball.clases.Bloque;
 import com.example.bouncingball.clases.Pelota;
+import com.example.bouncingball.database.dbConexion;
 import com.example.bouncingball.hilos.GameThread;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class GameView extends SurfaceView {
     private Paint pincelIndicadores = new Paint();
     private Paint pincelPelota = new Paint();
     private Paint pincelJugador = new Paint();
+    private dbConexion dao ;
     //Indicadores
     private int vidas;
     private int puntaje;
@@ -80,6 +83,8 @@ public class GameView extends SurfaceView {
                 pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
                 //grilla = new Grilla(xMax, yMax, 7, 10, 25);
                 grilla = new Grilla(xMax, yMax, 7, 10, 80);
+                // Base de Datos
+                dao = new dbConexion(getContext());
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
 
@@ -379,18 +384,43 @@ public class GameView extends SurfaceView {
     }
 
     private void dibujarIndicadores(Canvas canvas){
-        //Nivel
-        canvas.drawText("Nivel:" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
-        //Puntaje
-        canvas.drawText("Puntaje:" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
-        //Vidas
-        if(vidas>0){
 
-            canvas.drawText("Vidas:" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
-        }else{
+        SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
-            canvas.drawText("Vidas:" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+        String idioma_user = preferences.getString("idioma","es");
+
+        if(idioma_user.equalsIgnoreCase("es")){
+            //Nivel
+            canvas.drawText("Nivel:" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+            //Puntaje
+            canvas.drawText("Puntaje:" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+            //Vidas
+            if(vidas>0){
+
+                canvas.drawText("Vidas:" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+            }else{
+
+                canvas.drawText("Vidas:" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+            }
+
         }
+        else{
+
+            //Nivel
+            canvas.drawText("Level:" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+            //Puntaje
+            canvas.drawText("Score:" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+            //Vidas
+            if(vidas>0){
+
+                canvas.drawText("Life:" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+            }else{
+
+                canvas.drawText("Life:" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+            }
+
+        }
+
     }
 
     private void reiniciarJuego(Canvas canvas){

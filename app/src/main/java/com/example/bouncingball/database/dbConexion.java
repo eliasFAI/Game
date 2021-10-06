@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.example.bouncingball.clases.Usuario;
 
@@ -39,6 +40,27 @@ public class dbConexion extends DbUser {
          ex.toString();
      }
        return id ;
+   }
+   public long updatePuntaje(String nickUser ,int nuevopuntaje){
+
+       DbUser dbUser = new DbUser(context);
+       SQLiteDatabase db = dbUser.getWritableDatabase();
+       String []parametros = {nickUser};
+       int puntajeAnterior ;
+       //String u = us.getUsuario();
+       Cursor cursorUser = null;
+       Usuario date = null ;
+
+       cursorUser = db.rawQuery("UPDATE "+TABLE_USER+"SET"+Campo_PUNTAJE+"="+nuevopuntaje+"WHERE"+Campo_ID+"=?"+"and"+Campo_PUNTAJE+"<"+nuevopuntaje, parametros);
+
+       if(cursorUser.moveToFirst()){
+
+           Toast.makeText(this.context, "Puntaje Actualizado", Toast.LENGTH_SHORT).show();
+
+       }
+
+       cursorUser.close();
+       return 1 ;
    }
    public ArrayList<Usuario>mostrarUsuario(){
 

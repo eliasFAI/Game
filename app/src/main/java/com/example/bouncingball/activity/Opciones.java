@@ -23,7 +23,7 @@ public class Opciones extends AppCompatActivity {
     private CheckBox c1,c2,c3 ;
     private Switch aSwitchE ,aSwitchS;
     private MediaPlayer mp ;
-    private Button b1 ,b2 ,b5;
+    private Button b1 ,b2 ,b5,btn_sonido;
     private EditText usuario ;
     private EditText clave;
 
@@ -40,6 +40,8 @@ public class Opciones extends AppCompatActivity {
         b1 = (Button) findViewById(R.id.button9);
         b2 = (Button) findViewById(R.id.button10);
         b5 = (Button) findViewById(R.id.button11);
+        btn_sonido = (Button) findViewById(R.id.idSonido);
+
 
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
@@ -101,12 +103,13 @@ public class Opciones extends AppCompatActivity {
         }
 
     private void actualizarIdioma(){
+
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-            aSwitchS.setText("Sonido");
+            btn_sonido.setText("Sonido");
             txtNivelDelJuego.setText("Nivel del Juego");
             c1.setText("Facil");
             c2.setText("Intermedio");
@@ -120,7 +123,7 @@ public class Opciones extends AppCompatActivity {
         }
         else{
 
-            aSwitchS.setText("Sound");
+            btn_sonido.setText("Sound");
             txtNivelDelJuego.setText("Level of Play");
             c1.setText("Easy");
             c2.setText("Intermediate");
@@ -133,28 +136,16 @@ public class Opciones extends AppCompatActivity {
     }
     public void onClickSound(View v){
 
-        if(v.getId()==R.id.switch3){
-            if(aSwitchS.isChecked()){
-                System.out.println("Pasas x Aqui ");
-                if(mp!=null){
+            if (mp != null) {
 
-                    mp.release();
-                }
-                mp = MediaPlayer.create(this,R.raw.soundtheme);
-                if(mp==null){
-                    System.out.println("Mp es Null ");
-                }
-                mp.seekTo(0);
-                mp.start();
-                mp.setLooping(true);
+                mp.release();
             }
-            else{
-                if(mp!=null){
+            mp = MediaPlayer.create(this, R.raw.soundtheme);
 
-                    mp.stop();
-                }
-            }
-        }
+            mp.seekTo(0);
+            mp.start();
+            mp.setLooping(true);
+
     }
     public void volver(View v){
         Intent menu = new Intent(Opciones.this, MainActivity.class);

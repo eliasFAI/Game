@@ -5,11 +5,12 @@
       <map>
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.1828125" />
         <entry key="app/src/main/res/drawable/button_rounded_border.xml" value="0.12685185185185185" />
-        <entry key="app/src/main/res/layout-land/activity_login_screen.xml" value="0.18" />
-        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.11816578483245149" />
+        <entry key="app/src/main/res/layout-land/activity_login_screen.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout-land/activity_main2.xml" value="0.11816578483245149" />
         <entry key="app/src/main/res/layout-land/activity_main3.xml" value="0.11816578483245149" />
         <entry key="app/src/main/res/layout-land/activity_opciones2.xml" value="0.11816578483245149" />
+        <entry key="app/src/main/res/layout-land/button_rounded.xml" value="0.1715167548500882" />
         <entry key="app/src/main/res/layout-land/lista_item_players.xml" value="0.1715167548500882" />
         <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
