@@ -70,7 +70,7 @@ public class Main2Activity extends AppCompatActivity {
     public void guardar(View view){
 
        mp.start();
-       Usuario a = new Usuario (usuario.getText().toString(),clave.getText().toString(),email.getText().toString(),"0");
+       Usuario a = new Usuario (usuario.getText().toString(),clave.getText().toString(),email.getText().toString(),0);
 
         if(!usuario.getText().toString().isEmpty() && !clave.getText().toString().isEmpty() && !email.getText().toString().isEmpty())
         {
@@ -78,6 +78,11 @@ public class Main2Activity extends AppCompatActivity {
            long  id = dao.insertarUser(usuario.getText().toString(),clave.getText().toString(),email.getText().toString());
             if(id>0) {
                 Toast.makeText(this, "REGISTRO EXITOSO", Toast.LENGTH_SHORT).show();
+                int valor = dao.updatePuntaje(usuario.getText().toString(),100);
+                if(valor>0){
+                    Toast.makeText(this, "Update Puntaje", Toast.LENGTH_SHORT).show();
+                }
+
                 Intent menu = new Intent(Main2Activity.this, MainActivity.class);
                 menu.putExtra("id_user",a.getUsuario());
                 startActivity(menu);

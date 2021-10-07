@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -61,6 +62,7 @@ public class GameView extends SurfaceView {
     private boolean siguienteFotograma=false;
 
     private boolean futuroContacto=false;
+    private MediaPlayer mp ;
 
     public GameView(Context context) {
         super(context);
@@ -77,16 +79,39 @@ public class GameView extends SurfaceView {
                 yMax = getHeight();
                 System.out.println("Ancho de la pantalla:"+xMax);
                 //Ubicacion del jugador
-                //  jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                jugador=new Bloque(165,300,250,40);
-                // pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
-                //grilla = new Grilla(xMax, yMax, 7, 10, 25);
-                grilla = new Grilla(xMax, yMax, 7, 10, 80);
+                jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
+                //jugador=new Bloque(165,300,250,40);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
+                //pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
+                grilla = new Grilla(xMax, yMax, 7, 10, 25);
+                //grilla = new Grilla(xMax, yMax, 7, 10, 80);
+
                 // Base de Datos
                 dao = new dbConexion(getContext());
+
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
+                /*Sonido del Juego */
+                SharedPreferences preferences = getContext().getSharedPreferences("mysonido", Context.MODE_PRIVATE);
+
+                String sonido_user = preferences.getString("sonido","off");
+
+
+                if(sonido_user.equalsIgnoreCase("off")){
+                    if (mp != null) {
+
+                     mp.release();
+                    }
+                    mp = MediaPlayer.create(getContext(), R.raw.soundtheme);
+                    mp.seekTo(0);
+                    mp.start();
+                    mp.setLooping(true);
+
+                }else{
+                   mp.stop();
+                   mp.setLooping(false);
+                }
+
 
                 //gameThread.setRunning(true);
 

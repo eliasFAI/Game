@@ -8,19 +8,19 @@ public class Usuario  implements Serializable {
     private String usuario ;
     private String clave ;
     private String email ;
-    private String puntaje;
+    private int puntaje;
 
     public Usuario(){
         this.usuario = null;
         this.clave = null ;
         this.email = null ;
-        this.puntaje = "";
+        this.puntaje = 0;
     }
     public Usuario(String us,String pas){
         this.usuario = us ;
         this.clave = pas ;
     }
-    public Usuario(String us ,String pas,String em,String p){
+    public Usuario(String us ,String pas,String em,int p){
 
         this.usuario = us;
         this.clave = pas ;
@@ -52,8 +52,8 @@ public class Usuario  implements Serializable {
     public void setEmail(String em) {
         this.email = em;
     }
-    public String getPuntaje(){return this.puntaje;}
-    public void setPuntaje(String p){
+    public int getPuntaje(){return this.puntaje;}
+    public void setPuntaje(int p){
 
         this.puntaje = p ;
     }

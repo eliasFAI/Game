@@ -28,7 +28,7 @@ public class dbConexion extends DbUser {
          values.put("usuario", nickUser);
          values.put("clave", clave);
          values.put("email", email);
-         values.put("puntaje"," 77 ");
+         values.put("puntaje",0);
          if(db!=null) {
 
              id = db.insert(TABLE_USER, null, values);
@@ -41,7 +41,7 @@ public class dbConexion extends DbUser {
      }
        return id ;
    }
-   public long updatePuntaje(String nickUser ,int nuevopuntaje){
+   public int updatePuntaje(String nickUser ,int nuevopuntaje){
 
        DbUser dbUser = new DbUser(context);
        SQLiteDatabase db = dbUser.getWritableDatabase();
@@ -51,16 +51,26 @@ public class dbConexion extends DbUser {
        Cursor cursorUser = null;
        Usuario date = null ;
 
-       cursorUser = db.rawQuery("UPDATE "+TABLE_USER+"SET"+Campo_PUNTAJE+"="+nuevopuntaje+"WHERE"+Campo_ID+"=?"+"and"+Campo_PUNTAJE+"<"+nuevopuntaje, parametros);
+      /* cursorUser = db.rawQuery(
+               "UPDATE "+TABLE_USER+" SET "+ Campo_PUNTAJE+"=?"+nuevopuntaje+
+                       " WHERE "+Campo_ID+"=?", parametros);*/
 
-       if(cursorUser.moveToFirst()){
+       ContentValues cv = new ContentValues();
+       cv.put("puntaje",100); //These Fields should be your String values of actual column names
+      // cv.put("Field2","19");
+      // cv.put("Field2","Male");
+       int valor = db.update(TABLE_USER,cv,Campo_ID+"=?",parametros);
+       if(valor>0){
+           Toast.makeText(this.context, "Puntaje Actualizado", Toast.LENGTH_SHORT).show();
+       }
+     /*  if(cursorUser.moveToFirst()){
 
            Toast.makeText(this.context, "Puntaje Actualizado", Toast.LENGTH_SHORT).show();
 
-       }
+       }*/
 
-       cursorUser.close();
-       return 1 ;
+       //cursorUser.close();
+       return valor ;
    }
    public ArrayList<Usuario>mostrarUsuario(){
 
@@ -78,7 +88,8 @@ public class dbConexion extends DbUser {
                // nameUser , clave ,email,puntaje
                us = new Usuario();
                us.setUsuario(cursorUser.getString(0));
-               us.setPuntaje(cursorUser.getString(3));
+               us.setPuntaje(cursorUser.getInt(3));
+               //us.setPuntaje(cursorUser.getString(3));
                // us.setEmail("loss@gmail.com");
                System.out.println("Cursor Columna : "+cursorUser.getColumnCount());
                System.out.println("Cursor Fila :  "+cursorUser.getCount());

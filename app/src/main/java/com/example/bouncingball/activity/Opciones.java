@@ -51,6 +51,20 @@ public class Opciones extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("mysonido", Context.MODE_PRIVATE);
+
+        String sonido_user = preferences.getString("sonido","off");
+        if(sonido_user.equalsIgnoreCase("on")){
+            Toast.makeText(this, "Deberia detenerse el Sonido", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Sonido Inactivo", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
     public void recibir_date(){
         Bundle extra = getIntent().getExtras();
         String name_user = extra.getString("id_user2");
@@ -139,15 +153,23 @@ public class Opciones extends AppCompatActivity {
     }
     public void onClickSound(View v){
           mpclic.start();
-            if (mp != null) {
+        SharedPreferences preferences = getSharedPreferences("mysonido", Context.MODE_PRIVATE);
 
-                mp.release();
-            }
-            mp = MediaPlayer.create(this, R.raw.soundtheme);
+        String sonido_user = preferences.getString("sonido","off");
 
-            mp.seekTo(0);
-            mp.start();
-            mp.setLooping(true);
+
+        if(sonido_user.equalsIgnoreCase("off")){
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("sonido","on");
+            editor.commit();
+
+        } else{
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("sonido","off");
+            editor.commit();
+        }
+
 
     }
     public void volver(View v){
