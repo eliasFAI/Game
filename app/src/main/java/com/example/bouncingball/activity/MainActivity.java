@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bouncingball.R;
+import com.example.bouncingball.database.dbConexion;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +20,15 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mp ;
     Button jugar,ranking ,opciones,salir;
     TextView mostrar_user ;
+    private dbConexion dao ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mp = MediaPlayer.create(this,R.raw.clic);
-
+        // Base de Datos
+        dao = new dbConexion(this);
        recibirDatos();
 
 
@@ -32,9 +36,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        System.out.println("On Resume");
         //Carga Activity.
         actualizarIdioma();
+        actualizarPuntaje();
+
+    }
+    private void actualizarPuntaje(){
+
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String user = preferences.getString("user","vacio");
+        int mypuntaje = preferences.getInt("user_puntaje",0);
+        System.out.println("User : "+user);
+        System.out.println("Puntaje : "+mypuntaje);
+        dao.updatePuntaje(user,mypuntaje);
 
     }
     public void recibirDatos(){
@@ -52,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
     public void play(View v){
         mp.start();
         Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
+        //jugar.putExtra("id_user3",mostrar_user.getText().toString());
+
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+       // String user = preferences.getString("user","vacio");
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user",mostrar_user.getText().toString());
+        editor.commit();
+
+
+
         startActivity(jugar);
     }
     public void mostrar(View v){

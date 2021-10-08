@@ -1,10 +1,13 @@
 package com.example.bouncingball.logica;
 
+import static android.content.Intent.getIntent;
+
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -77,14 +80,16 @@ public class GameView extends SurfaceView {
                 cayo = false;
                 xMax = getWidth();
                 yMax = getHeight();
-                System.out.println("Ancho de la pantalla:"+xMax);
+                SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+                String user = preferences.getString("user","vacio");
+                System.out.println("Usuario Recibido :"+user);
                 //Ubicacion del jugador
-                jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                //jugador=new Bloque(165,300,250,40);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-                //pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
-                grilla = new Grilla(xMax, yMax, 7, 10, 25);
-                //grilla = new Grilla(xMax, yMax, 7, 10, 80);
+               // jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
+                jugador=new Bloque(165,300,250,40);
+                //pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
+                //grilla = new Grilla(xMax, yMax, 7, 10, 25);
+                grilla = new Grilla(xMax, yMax, 7, 10, 80);
 
                 // Base de Datos
                 dao = new dbConexion(getContext());
@@ -92,12 +97,12 @@ public class GameView extends SurfaceView {
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
                 /*Sonido del Juego */
-                SharedPreferences preferences = getContext().getSharedPreferences("mysonido", Context.MODE_PRIVATE);
+              //  SharedPreferences preferences = getContext().getSharedPreferences("mysonido", Context.MODE_PRIVATE);
 
-                String sonido_user = preferences.getString("sonido","off");
+             //   String sonido_user = preferences.getString("sonido","off");
 
 
-                if(sonido_user.equalsIgnoreCase("off")){
+             /*   if(sonido_user.equalsIgnoreCase("off")){
                     if (mp != null) {
 
                      mp.release();
@@ -110,7 +115,7 @@ public class GameView extends SurfaceView {
                 }else{
                    mp.stop();
                    mp.setLooping(false);
-                }
+                }*/
 
 
                 //gameThread.setRunning(true);
@@ -352,11 +357,18 @@ public class GameView extends SurfaceView {
         System.out.println("********************************");
         System.out.println("***************GANASTE*****************");
         System.out.println("********************************");
+
         gameThread.pause();
         this.reubicarPelota();
         this.grilla.avanzarUnNivel();
         bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
         canvas.drawBitmap(bmp, 0, 0, null);
+        SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        // String user = preferences.getString("user","vacio");
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("user_puntaje",this.puntaje);
+        editor.commit();
+        //dao.updatePuntaje(,this.puntaje);
     }
 
     private void controlDelJuego(Canvas canvas){

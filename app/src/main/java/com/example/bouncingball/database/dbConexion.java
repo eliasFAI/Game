@@ -22,7 +22,7 @@ public class dbConexion extends DbUser {
      try {
          DbUser dbplayers = new DbUser(context);
          SQLiteDatabase db = dbplayers.getWritableDatabase();
-        // db.delete(TABLE_USER,null,null) ;
+         //db.delete(TABLE_USER,null,null) ;
 
          ContentValues values = new ContentValues();
          values.put("usuario", nickUser);
@@ -56,7 +56,7 @@ public class dbConexion extends DbUser {
                        " WHERE "+Campo_ID+"=?", parametros);*/
 
        ContentValues cv = new ContentValues();
-       cv.put("puntaje",100); //These Fields should be your String values of actual column names
+       cv.put("puntaje",nuevopuntaje); //These Fields should be your String values of actual column names
       // cv.put("Field2","19");
       // cv.put("Field2","Male");
        int valor = db.update(TABLE_USER,cv,Campo_ID+"=?",parametros);
@@ -106,7 +106,7 @@ public class dbConexion extends DbUser {
 
        DbUser dbUser = new DbUser(context);
        SQLiteDatabase db = dbUser.getReadableDatabase();
-       String []parametros = {us.getUsuario().toLowerCase(), us.getClave().toLowerCase()};
+       String []parametros = {us.getUsuario(), us.getClave()};
        String u = us.getUsuario();
        Cursor cursorUser = null;
        Usuario date = null ;

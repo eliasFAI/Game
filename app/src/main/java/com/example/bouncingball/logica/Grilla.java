@@ -130,10 +130,10 @@ public class Grilla {
     }
 
     private void pintarNivelDePrueba(){
-        this.cantidadBloquesPintados=1;
+        this.cantidadBloquesPintados=2;
         //Fila0
         this.matrizBloque[0][0].setDureza(1);
-        this.matrizBloque[0][1].setDureza(0);
+        this.matrizBloque[0][1].setDureza(1);
         this.matrizBloque[0][2].setDureza(0);
         this.matrizBloque[0][3].setDureza(0);
         this.matrizBloque[0][4].setDureza(0);
