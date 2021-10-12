@@ -96,31 +96,8 @@ public class GameView extends SurfaceView {
 
                 gameThread = new GameThread(GameView.this);
                 gameThread.play();
-                /*Sonido del Juego */
-              //  SharedPreferences preferences = getContext().getSharedPreferences("mysonido", Context.MODE_PRIVATE);
-
-             //   String sonido_user = preferences.getString("sonido","off");
 
 
-             /*   if(sonido_user.equalsIgnoreCase("off")){
-                    if (mp != null) {
-
-                     mp.release();
-                    }
-                    mp = MediaPlayer.create(getContext(), R.raw.soundtheme);
-                    mp.seekTo(0);
-                    mp.start();
-                    mp.setLooping(true);
-
-                }else{
-                   mp.stop();
-                   mp.setLooping(false);
-                }*/
-
-
-                //gameThread.setRunning(true);
-
-                //gameThread.start();
             }
 
             @Override

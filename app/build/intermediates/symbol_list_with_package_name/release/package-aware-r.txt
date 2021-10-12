@@ -1671,6 +1671,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable argentina
 drawable avd_hide_password
 drawable avd_show_password
 drawable ball
@@ -1682,13 +1683,16 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_circle
 drawable button_rounded
 drawable button_rounded_border
+drawable consonido
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable estadosunidos
 drawable finjuego
 drawable ganaste
 drawable ic_clock_black_24dp
@@ -1733,6 +1737,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pelota2
+drawable sinsonido
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1942,11 +1947,12 @@ id honorRequest
 id icon
 id icon_group
 id idJugadorPuntajeMax
-id idSonido
 id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageButton
+id imageButton2
 id imageView
 id imageView2
 id imageView4
@@ -2117,7 +2123,6 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
-id switch3
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans

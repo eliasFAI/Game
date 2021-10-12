@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/TexViewPlayers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="53dp"
                 android:layout_marginBottom="87dp"
                 android:text=""
                 android:textSize="24sp"
@@ -28,26 +28,30 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="44dp" />
 
-            <Button
-                android:id="@+id/idSonido"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_rounded"
-                android:onClick="onClickSound"
-                android:text="Sonido" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:background="@drawable/button_rounded_border"
-                android:onClick="onClickIdioma"
-                android:text="CAMBIAR IDIOMA"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch3" />
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:background="#252850"
+                    android:onClick="onClickSound"
+                    app:srcCompat="@drawable/consonido"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#252850"
+                    android:onClick="onClickIdioma"
+                    app:srcCompat="@drawable/argentina"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView"
@@ -95,31 +99,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
-            <Button
-                android:id="@+id/button9"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/button_rounded_border"
-                android:onClick="onClick"
-                android:text="@string/app_validar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_rounded_border"
-                android:onClick="volver"
-                android:text="@string/app_volver"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button9"
-                app:layout_constraintVertical_bias="0.563" />
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Validar" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="volver"
+                    android:text="Volver" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

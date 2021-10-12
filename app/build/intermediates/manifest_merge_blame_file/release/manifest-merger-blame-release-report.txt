@@ -11,7 +11,7 @@
 9-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 10
 11    <application
-11-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-28:19
+11-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-30:19
 12        android:allowBackup="true"
 12-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -62,6 +62,13 @@
 33-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:27-74
 34            </intent-filter>
 35        </activity>
-36    </application>
-37
-38</manifest>
+36
+37        <service
+37-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:9-29:46
+38            android:name="com.example.bouncingball.activity.ServicioMusica"
+38-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:18-57
+39            android:enabled="true" />
+39-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:29:13-35
+40    </application>
+41
+42</manifest>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,12 @@ public class Opciones extends AppCompatActivity {
     private CheckBox c1,c2,c3 ;
     private Switch aSwitchE ,aSwitchS;
     private MediaPlayer mp ;
-    private Button b1 ,b2 ,b5,btn_sonido;
+    private Button b1 ,b2 ,b5;
+    private ImageButton btn_sonido ,btn_idioma ;
     private EditText usuario ;
     private EditText clave;
     private MediaPlayer mpclic ;
+    private boolean encendida  ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +40,13 @@ public class Opciones extends AppCompatActivity {
         c1 = (CheckBox) findViewById(R.id.checkBox);
         c2 = (CheckBox) findViewById(R.id.checkBox2);
         c3 = (CheckBox) findViewById(R.id.checkBox3);
-        aSwitchS = (Switch) findViewById(R.id.switch3);
         txtNivelDelJuego =(TextView) findViewById(R.id.textView);
-        b1 = (Button) findViewById(R.id.button9);
-        b2 = (Button) findViewById(R.id.button10);
-        b5 = (Button) findViewById(R.id.button11);
-        btn_sonido = (Button) findViewById(R.id.idSonido);
+        b1 = (Button) findViewById(R.id.button10);
+        b2 = (Button) findViewById(R.id.button9);
+        btn_sonido = (ImageButton) findViewById(R.id.imageButton);
+        btn_idioma = (ImageButton) findViewById(R.id.imageButton2);
 
-
+        encendida = false ;
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
         actualizarIdioma();
@@ -54,15 +56,6 @@ public class Opciones extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences preferences = getSharedPreferences("mysonido", Context.MODE_PRIVATE);
-
-        String sonido_user = preferences.getString("sonido","off");
-        if(sonido_user.equalsIgnoreCase("on")){
-            Toast.makeText(this, "Deberia detenerse el Sonido", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Sonido Inactivo", Toast.LENGTH_SHORT).show();
-        }
-
 
     }
     public void recibir_date(){
@@ -73,7 +66,7 @@ public class Opciones extends AppCompatActivity {
     }
     public void onClick(View v){
          mpclic.start();
-         if(v.getId()==R.id.button9){
+         if(v.getId()==R.id.button10){
             validar();
          }
 
@@ -103,7 +96,7 @@ public class Opciones extends AppCompatActivity {
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
+            btn_idioma.setImageResource(R.drawable.estadosunidos);
 
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("idioma","en");
@@ -111,7 +104,7 @@ public class Opciones extends AppCompatActivity {
                 actualizarIdioma();
             }
             else{
-
+            btn_idioma.setImageResource(R.drawable.argentina);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("idioma","es");
                 editor.commit();
@@ -126,50 +119,50 @@ public class Opciones extends AppCompatActivity {
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-            btn_sonido.setText("Sonido");
+
+
             txtNivelDelJuego.setText("Nivel del Juego");
             c1.setText("Facil");
             c2.setText("Intermedio");
             c3.setText("Dificil");
             b1.setText("Validar");
-            b2.setText("Anterior");
-            b5.setText("CAMBIAR IDIOMA");
-
-
+            b2.setText("Volver");
 
         }
         else{
 
-            btn_sonido.setText("Sound");
+
             txtNivelDelJuego.setText("Level of Play");
             c1.setText("Easy");
             c2.setText("Intermediate");
             c3.setText("Hard");
             b1.setText("Validate");
             b2.setText("Previous");
-            b5.setText("CHANGE IDIOM");
+
         }
 
     }
     public void onClickSound(View v){
-          mpclic.start();
-        SharedPreferences preferences = getSharedPreferences("mysonido", Context.MODE_PRIVATE);
 
-        String sonido_user = preferences.getString("sonido","off");
-
-
-        if(sonido_user.equalsIgnoreCase("off")){
-
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("sonido","on");
-            editor.commit();
-
-        } else{
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("sonido","off");
-            editor.commit();
+        if(encendida){
+            apagarMusica();
+        }else{
+            enciendeMusica();
         }
 
+    }
+    private void enciendeMusica(){
+        btn_sonido.setImageResource(R.drawable.consonido);
+        Intent miReproductor = new Intent(this,ServicioMusica.class);
+        this.startService(miReproductor);
+        encendida =!encendida;
+
+    }
+    private void apagarMusica(){
+        btn_sonido.setImageResource(R.drawable.sinsonido);
+        Intent miReproductor = new Intent(this,ServicioMusica.class);
+        this.stopService(miReproductor);
+        encendida = !encendida;
 
     }
     public void volver(View v){
