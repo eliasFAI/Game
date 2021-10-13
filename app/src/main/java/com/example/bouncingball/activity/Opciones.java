@@ -68,21 +68,33 @@ public class Opciones extends AppCompatActivity {
     }
     public void onClick(View v){
          mpclic.start();
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
          if(btn_facil.isChecked()){
           /*
-          * Seleccion de modo facil
+          * Seleccion de modo facil los bloques son mas fragiles
           * */
+             editor.putInt("level",1);
+             editor.commit();
+
+
          }else{
              if(btn_intermedio.isChecked()){
                  /*
-                 * Seleccion de modo Intermedio
+                 * Seleccion de modo Intermedio cambio de la dureza del bloque
+                 * Cambia la distribucion de los bloques
                  * */
+                 editor.putInt("level",2);
+                 editor.commit();
              }
              else{
                  /*
                  * Seleccion de modo Dificil
                  * */
+                 editor.putInt("level",3);
 
+                 editor.commit();
              }
          }
 

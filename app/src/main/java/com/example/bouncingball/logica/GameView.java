@@ -33,6 +33,7 @@ public class GameView extends SurfaceView {
     private Paint pincelIndicadores = new Paint();
     private Paint pincelPelota = new Paint();
     private Paint pincelJugador = new Paint();
+    private Paint pincelDureza =  new Paint();
     private dbConexion dao ;
     //Indicadores
     private int vidas;
@@ -84,12 +85,16 @@ public class GameView extends SurfaceView {
                 String user = preferences.getString("user","vacio");
                 System.out.println("Usuario Recibido :"+user);
                 //Ubicacion del jugador
-               // jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
-                jugador=new Bloque(165,300,250,40);
+                jugador=new Bloque(getWidth() / 2 - (150/2),getHeight()-200,150,20);
+               //  jugador=new Bloque(165,300,250,40);
                 //pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 13);
+                pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-40,45, 7);
                 //grilla = new Grilla(xMax, yMax, 7, 10, 25);
-                grilla = new Grilla(xMax, yMax, 7, 10, 80);
+                /*
+                * Aqui deberia recuperarse del sharedPreferences
+                * */
+                int level = preferences.getInt("level",1);
+                grilla = new Grilla(xMax, yMax, 7, 10, 80,level);
 
                 // Base de Datos
                 dao = new dbConexion(getContext());
@@ -124,6 +129,7 @@ public class GameView extends SurfaceView {
         pincelJugador.setColor(Color.GREEN);
         pincelIndicadores.setColor(Color.WHITE);
         pincelIndicadores.setTextSize(40f);
+        pincelDureza.setColor(Color.RED);
 
         //Controles
         verificarContactoPantalla();
@@ -177,49 +183,58 @@ public class GameView extends SurfaceView {
     }
 
     //Metodos del Juego
-    private ArrayList<Bloque> obtenerBloquesChocados(){
+    private ArrayList<Bloque> obtenerBloquesChocados(Canvas canvas){
         boolean unContacto = false;
         int contarContactos=0;
-        Bloque [] arreBloqueContacto=new Bloque[3];
+       // Bloque [] arreBloqueContacto=new Bloque[3];
 
         ArrayList<Bloque> listaBloque = new ArrayList<Bloque>();
         //Recorre todas las filas verificando si la pelota tuvo algun contacto
         for (int i=0;i<this.grilla.getCantidadFilas();i++){
             for (int j=0;j<this.grilla.getCantidadColumnas();j++){
                 //Verifica que el bloque todavia no se rompio
-                if(this.grilla.getBloque(i,j).getDureza()==1){
+                if(this.grilla.getBloque(i,j).getDureza()==1 || this.grilla.getBloque(i,j).getDureza()==2){
                     //optimizar: Para que si ya detecto un contacto, no siga verificando los otros bloques
                     unContacto=verificarContacto(this.grilla.getBloque(i,j));
                     if(unContacto){
                         // Para hacer pruebas
                         //Guardo el bloque que hizo contacto
                         listaBloque.add(this.grilla.getBloque(i,j));
-                        arreBloqueContacto[contarContactos]=this.grilla.getBloque(i,j);
-                        this.puntaje=this.puntaje+this.grilla.getBloque(i,j).getPuntaje();
+                       // arreBloqueContacto[contarContactos]=this.grilla.getBloque(i,j);
+                        if(this.grilla.getBloque(i,j).getDureza()==1) {
+                            this.puntaje = this.puntaje + this.grilla.getBloque(i, j).getPuntaje();
+                        }else{
+                            this.grilla.getBloque(i,j).setPincel(pincelDureza);
+                        }
                         contarContactos++;
                     }
                 }
+
             }
         }
+
         return listaBloque;
     }
 
     private void verificarContactosMultiples(Canvas canvas){
         Bloque [] arreBloqueContacto;
         ArrayList<Bloque> listaBloque;
-        listaBloque=this.obtenerBloquesChocados();
+        listaBloque=this.obtenerBloquesChocados(canvas);
 
 
         if(listaBloque.size()==1){
+            System.out.println("Contacto 1");
             Bloque b=listaBloque.get(0);
             contactoUnBloque(b);
         }
         if(listaBloque.size()==2){
+            System.out.println("Contacto 2");
             Bloque b1=listaBloque.get(0);
             Bloque b2=listaBloque.get(1);
             contactoDosBloques(b1,b2);
         }
         if(listaBloque.size()==3){
+            System.out.println("Contacto 3");
             Bloque b1=listaBloque.get(0);
             Bloque b2=listaBloque.get(1);
             Bloque b3=listaBloque.get(2);
@@ -231,15 +246,43 @@ public class GameView extends SurfaceView {
 
         actualizarDireccion2(b);
         //  colisionBloqueAux(b);
-        b.setDureza(0);
-        this.grilla.restarBloquesPintados();
+        if(b.getDureza()==1) {
+            b.setDureza(0);
+            this.grilla.restarBloquesPintados();
+        }
+        else{
+            b.setDureza(1);
+        }
+
     }
     private void contactoDosBloques(Bloque b1, Bloque b2){
         //Estan horizontal
         if(b1.getNroFila()==b2.getNroFila()){
             //Tiene que desaparecer los dos y la dirección solo cambia eje Y
-            b1.setDureza(0);
-            b2.setDureza(0);
+            if(b1.getDureza()==1 && b2.getDureza()==1) {
+                b1.setDureza(0);
+                b2.setDureza(0);
+                this.grilla.restarBloquesPintados();
+                this.grilla.restarBloquesPintados();
+            }
+            else{
+                if(b1.getDureza()==2 && b2.getDureza()==2) {
+                    b1.setDureza(1);
+                    b2.setDureza(1);
+                }
+                else{
+                    if(b1.getDureza()==1){
+                        b1.setDureza(0);
+                        b2.setDureza(1);
+                    }
+                    else{
+                        b2.setDureza(0);
+                        b1.setDureza(1);
+                    }
+                }
+            }
+           // b1.setDureza(0);
+          //  b2.setDureza(0);
             System.out.println("Bloques estan horizontal");
             pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
         }
@@ -320,7 +363,7 @@ public class GameView extends SurfaceView {
         for (int i=0;i<this.grilla.getCantidadFilas();i++){
             for (int j=0;j<this.grilla.getCantidadColumnas();j++){
                 //Este metodo dibuja la grilla creada anteriormente.
-                if(this.grilla.getBloque(i,j).getDureza()==1){
+                if(this.grilla.getBloque(i,j).getDureza()==1 || this.grilla.getBloque(i,j).getDureza()==2){
                     canvas.drawRect(this.grilla.getBloque(i,j).getPosX(),this.grilla.getBloque(i,j).getPosY(),
                             this.grilla.getBloque(i,j).getPosX()+this.grilla.getBloque(i,j).getAnchoBloque(),
                             this.grilla.getBloque(i,j).getPosY()+this.grilla.getBloque(i,j).getAltoBloque(),this.grilla.getBloque(i,j).getPincel());

@@ -16,16 +16,17 @@ public class Grilla {
     private int anchoBloque;
     private int nivelActual;
     private Bloque[][] matrizBloque;
+    private Paint pincelDureza =  new Paint();
 
 
 
-    public Grilla(int ancho, int alto, int cantColumnas, int cantFilas, int alturaBloque){
+    public Grilla(int ancho, int alto, int cantColumnas, int cantFilas, int alturaBloque ,int nivel){
         this.anchoPantalla=ancho;
         this.altoPantalla=alto;
         this.cantidadColumnas=cantColumnas;
         this.cantidadFilas=cantFilas;
         this.altoDelBloque=alturaBloque;
-        this.nivelActual=0;
+        this.nivelActual=nivel;
         this.matrizBloque= new Bloque [cantFilas][cantColumnas];
         //Calculos.
         this.espacioEntreBloques=5*(this.cantidadColumnas-1);
@@ -115,7 +116,7 @@ public class Grilla {
                 break;
             case 2: pintarlNivel1();
                 break;
-            case 3: pintarNivel2(this.matrizBloque);
+            case 3: pintarNivel2();
                 break;
         }
     }
@@ -223,63 +224,69 @@ public class Grilla {
 
     }
 
-    private void pintarNivel2(Bloque [][] nivel){
+    private void pintarNivel2(){
+        pincelDureza.setColor(Color.GRAY);
+        this.cantidadBloquesPintados=48;
         //Fila5
-        nivel[5][0].setDureza(0);
-        nivel[5][9].setDureza(0);
-        //Fila6
-        nivel[6][0].setDureza(0);
-        nivel[6][1].setDureza(0);
-        nivel[6][8].setDureza(0);
-        nivel[6][9].setDureza(0);
+        this.matrizBloque[5][0].setDureza(1);
+        this.matrizBloque[5][6].setDureza(1);
+
+        this.matrizBloque[6][0].setDureza(1);
+        this.matrizBloque[6][1].setDureza(1);
+        this.matrizBloque[6][5].setDureza(1);
+        this.matrizBloque[6][6].setDureza(1);
+
         //Fila7
-        nivel[7][0].setDureza(0);
-        nivel[7][1].setDureza(0);
-        nivel[7][2].setDureza(0);
-        nivel[7][7].setDureza(0);
-        nivel[7][8].setDureza(0);
-        nivel[7][9].setDureza(0);
+        this.matrizBloque[7][0].setDureza(1);
+        this.matrizBloque[7][1].setDureza(1);
+        this.matrizBloque[7][2].setDureza(1);
+        this.matrizBloque[7][4].setDureza(1);
+        this.matrizBloque[7][5].setDureza(1);
+        this.matrizBloque[7][6].setDureza(1);
         //Fila8
-        nivel[8][0].setDureza(0);
-        nivel[8][1].setDureza(0);
-        nivel[8][2].setDureza(0);
-        nivel[8][3].setDureza(0);
-        nivel[8][6].setDureza(0);
-        nivel[8][7].setDureza(0);
-        nivel[8][8].setDureza(0);
-        nivel[8][9].setDureza(0);
+        this.matrizBloque[8][0].setDureza(1);
+        this.matrizBloque[8][1].setDureza(1);
+        this.matrizBloque[8][2].setDureza(1);
+        this.matrizBloque[8][3].setDureza(1);
+        this.matrizBloque[8][4].setDureza(1);
+        this.matrizBloque[8][5].setDureza(1);
+        this.matrizBloque[8][6].setDureza(1);
         //Fila9
-        nivel[9][0].setDureza(0);
-        nivel[9][1].setDureza(0);
-        nivel[9][2].setDureza(0);
-        nivel[9][3].setDureza(0);
-        nivel[9][6].setDureza(0);
-        nivel[9][7].setDureza(0);
-        nivel[9][8].setDureza(0);
-        nivel[9][9].setDureza(0);
+        this.matrizBloque[9][0].setPincel(pincelDureza);
+        this.matrizBloque[9][1].setPincel(pincelDureza);
+        this.matrizBloque[9][2].setPincel(pincelDureza);
+        this.matrizBloque[9][3].setPincel(pincelDureza);
+        this.matrizBloque[9][4].setPincel(pincelDureza);
+        this.matrizBloque[9][5].setPincel(pincelDureza);
+        this.matrizBloque[9][6].setPincel(pincelDureza);
+
+        this.matrizBloque[9][0].setDureza(2);
+        this.matrizBloque[9][1].setDureza(2);
+        this.matrizBloque[9][2].setDureza(2);
+        this.matrizBloque[9][3].setDureza(2);
+        this.matrizBloque[9][4].setDureza(2);
+        this.matrizBloque[9][5].setDureza(2);
+        this.matrizBloque[9][6].setDureza(2);
+        /*
         //Fila10
-        nivel[10][0].setDureza(0);
-        nivel[10][1].setDureza(0);
+        this.matrizBloque[10][0].setDureza(1);
+        this.matrizBloque[10][1].setDureza(1);
         //Fila11
-        nivel[11][0].setDureza(0);
-        nivel[11][1].setDureza(0);
-        nivel[11][2].setDureza(0);
-        nivel[11][3].setDureza(0);
-        nivel[11][6].setDureza(0);
-        nivel[11][7].setDureza(0);
-        nivel[11][8].setDureza(0);
-        nivel[11][9].setDureza(0);
+        this.matrizBloque[11][0].setDureza(1);
+        this.matrizBloque[11][1].setDureza(1);
+        this.matrizBloque[11][2].setDureza(1);
+        this.matrizBloque[11][3].setDureza(1);
+        this.matrizBloque[11][4].setDureza(1);
+        this.matrizBloque[11][5].setDureza(1);
+        this.matrizBloque[11][6].setDureza(1);
         //Fila12
-        nivel[12][0].setDureza(0);
-        nivel[12][1].setDureza(0);
-        nivel[12][2].setDureza(0);
-        nivel[12][3].setDureza(0);
-        nivel[12][4].setDureza(0);
-        nivel[12][5].setDureza(0);
-        nivel[12][6].setDureza(0);
-        nivel[12][7].setDureza(0);
-        nivel[12][8].setDureza(0);
-        nivel[12][9].setDureza(0);
+        this.matrizBloque[12][0].setDureza(1);
+        this.matrizBloque[12][1].setDureza(1);
+        this.matrizBloque[12][2].setDureza(1);
+        this.matrizBloque[12][3].setDureza(1);
+        this.matrizBloque[12][4].setDureza(1);
+        this.matrizBloque[12][5].setDureza(1);
+        this.matrizBloque[12][6].setDureza(1); */
     }
 
 
