@@ -1,7 +1,7 @@
 com/example/bouncingball/activity/Main3Activity.java
  com.example.bouncingball.activity.Main3Activity
-com/example/bouncingball/activity/Main2Activity.java
- com.example.bouncingball.activity.Main2Activity
+com/example/bouncingball/activity/Opciones.java
+ com.example.bouncingball.activity.Opciones
 com/example/bouncingball/hilos/GameThread.java
  com.example.bouncingball.hilos.GameThread
 com/example/bouncingball/listas/ListaUsuarioAdapter.java
@@ -23,8 +23,8 @@ com/example/bouncingball/database/dbConexion.java
  com.example.bouncingball.database.dbConexion
 com/example/bouncingball/clases/Jugador.java
  com.example.bouncingball.clases.Jugador
-com/example/bouncingball/activity/LoginScreen.java
- com.example.bouncingball.activity.LoginScreen
+com/example/bouncingball/activity/MainActivity.java
+ com.example.bouncingball.activity.MainActivity
 com/example/bouncingball/clases/Pelota.java
  com.example.bouncingball.clases.Pelota
 com/example/bouncingball/logica/GameView.java
@@ -38,7 +38,7 @@ com/example/bouncingball/activity/ServicioMusica.java
  com.example.bouncingball.activity.ServicioMusica
 com/example/bouncingball/clases/Usuario.java
  com.example.bouncingball.clases.Usuario
-com/example/bouncingball/activity/MainActivity.java
- com.example.bouncingball.activity.MainActivity
-com/example/bouncingball/activity/Opciones.java
- com.example.bouncingball.activity.Opciones
+com/example/bouncingball/activity/Main2Activity.java
+ com.example.bouncingball.activity.Main2Activity
+com/example/bouncingball/activity/LoginScreen.java
+ com.example.bouncingball.activity.LoginScreen

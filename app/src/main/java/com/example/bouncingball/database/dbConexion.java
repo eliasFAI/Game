@@ -61,7 +61,7 @@ public class dbConexion extends DbUser {
       // cv.put("Field2","Male");
        int valor = db.update(TABLE_USER,cv,Campo_ID+"=?",parametros);
        if(valor>0){
-           Toast.makeText(this.context, "Puntaje Actualizado", Toast.LENGTH_SHORT).show();
+           //Toast.makeText(this.context, "Puntaje Actualizado", Toast.LENGTH_SHORT).show();
        }
      /*  if(cursorUser.moveToFirst()){
 

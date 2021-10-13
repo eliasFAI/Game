@@ -1818,7 +1818,6 @@ id all
 id always
 id animateToEnd
 id animateToStart
-id anterior
 id arc
 id asConfigured
 id async
@@ -1834,8 +1833,8 @@ id blocking
 id bottom
 id bounce
 id button
-id button10
 id button11
+id button14
 id button2
 id button3
 id button4
@@ -1843,7 +1842,6 @@ id button5
 id button6
 id button7
 id button8
-id button9
 id buttonPanel
 id cancel_button
 id center
@@ -1851,9 +1849,6 @@ id center_horizontal
 id center_vertical
 id chain
 id chains
-id checkBox
-id checkBox2
-id checkBox3
 id checkbox
 id checked
 id chip
@@ -2060,6 +2055,9 @@ id postLayout
 id progress_circular
 id progress_horizontal
 id radio
+id radioButton
+id radioButton2
+id radioButton3
 id ratio
 id rectangles
 id reverseSawtooth

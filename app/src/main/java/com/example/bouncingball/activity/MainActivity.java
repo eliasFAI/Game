@@ -16,7 +16,6 @@ import com.example.bouncingball.database.dbConexion;
 
 public class MainActivity extends AppCompatActivity {
 
-
     MediaPlayer mp ;
     Button jugar,ranking ,opciones,salir;
     TextView mostrar_user ;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("On Resume");
         //Carga Activity.
         actualizarIdioma();
         actualizarPuntaje();
@@ -47,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String user = preferences.getString("user","vacio");
         int mypuntaje = preferences.getInt("user_puntaje",0);
-        System.out.println("User : "+user);
-        System.out.println("Puntaje : "+mypuntaje);
         dao.updatePuntaje(user,mypuntaje);
 
     }
@@ -67,15 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void play(View v){
         mp.start();
         Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
-        //jugar.putExtra("id_user3",mostrar_user.getText().toString());
-
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-       // String user = preferences.getString("user","vacio");
+
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user",mostrar_user.getText().toString());
         editor.commit();
-
-
 
         startActivity(jugar);
     }
@@ -94,11 +86,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(k);
 
     }
-    public void exit(View v){
+    public void regresar(View v){
         mp.start();
-        super.onBackPressed();
-        finishAffinity();
-        System.exit(0);
+        onBackPressed();
+
     }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
@@ -110,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
           jugar.setText("JUGAR");
           ranking.setText("RANKING");
           opciones.setText("OPCIONES");
-          salir.setText("SALIR");
-
+          salir.setText("REGRESAR");
 
         }
         else{
@@ -119,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             jugar.setText("PLAY");
             ranking.setText("RANKING");
             opciones.setText("OPTION");
-            salir.setText("EXIT");
+            salir.setText("PREVIOUS");
 
         }
 

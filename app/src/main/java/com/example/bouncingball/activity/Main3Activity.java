@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class Main3Activity extends AppCompatActivity {
     private RecyclerView listaplayers;
     private TextView mostrar_user ,puntajemax;
     private MediaPlayer mp ;
+    private Button btn_regresar ;
 
 
     @Override
@@ -37,9 +39,8 @@ public class Main3Activity extends AppCompatActivity {
         listaplayers = findViewById(R.id.listaplayers);
         listaplayers.setLayoutManager(new LinearLayoutManager(this));
         puntajemax = (TextView)findViewById(R.id.idJugadorPuntajeMax);
+        btn_regresar = (Button)findViewById(R.id.button);
         mp = MediaPlayer.create(this,R.raw.clic);
-        //lista = (ListView) findViewById(R.id.LVMostrar);
-        //db  = new DbUser(this);
         recibir_date();
         db = new dbConexion(this);
         listaArrayUsuarios = new ArrayList<>();
@@ -74,18 +75,18 @@ public class Main3Activity extends AppCompatActivity {
         if(idioma_user.equalsIgnoreCase("es")){
 
          puntajemax.setText("Jugador Puntaje Max");
+         btn_regresar.setText("Regresar");
 
         }
         else{
             puntajemax.setText("Players  Score Max");
+            btn_regresar.setText("Previous");
         }
 
     }
 
     public void anterior(View v) {
-        mp.start();
-        Intent k = new Intent(Main3Activity.this, MainActivity.class);
-        startActivity(k);
+       onBackPressed();
 
     }
 

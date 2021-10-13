@@ -7,7 +7,7 @@
     <string name="app_play">Jugar</string>
     <string name="app_ranking">Ranking</string>
    <string name="app_opciones">Opciones</string>
-    <string name="app_exitos">Salir</string>
+    <string name="app_exitos">Regresar</string>
     <string name="app_email">Correo</string>
     <string name="app_toacept">Aceptar</string>
     <string name="app_jugadorpuntaje"> Jugador             Puntaje Max </string>

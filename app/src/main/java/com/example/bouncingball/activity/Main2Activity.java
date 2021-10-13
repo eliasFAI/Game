@@ -78,10 +78,7 @@ public class Main2Activity extends AppCompatActivity {
            long  id = dao.insertarUser(usuario.getText().toString(),clave.getText().toString(),email.getText().toString());
             if(id>0) {
                 Toast.makeText(this, "REGISTRO EXITOSO", Toast.LENGTH_SHORT).show();
-               /* int valor = dao.updatePuntaje(usuario.getText().toString(),5);
-                if(valor>0){
-                    Toast.makeText(this, "Update Puntaje", Toast.LENGTH_SHORT).show();
-                }*/
+
 
                 Intent menu = new Intent(Main2Activity.this, MainActivity.class);
                 menu.putExtra("id_user",a.getUsuario());
@@ -100,6 +97,10 @@ public class Main2Activity extends AppCompatActivity {
         }
 
 
+    }
+    public void exit(View view){
+
+        finish();
     }
 
 }

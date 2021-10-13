@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#252850">
     <ScrollView
@@ -40,15 +41,14 @@
 
 
             <Button
-                android:id="@+id/anterior"
+                android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".07"
-                android:background="@drawable/button_rounded"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:onClick="anterior"
-                android:text="@string/app_volver"
-                android:textSize="24sp"
-                tools:ignore="InvalidId" />
+                android:text="Regresar"
+                app:backgroundTint="@color/colorPrimary" />
 
         </LinearLayout>
     </ScrollView>

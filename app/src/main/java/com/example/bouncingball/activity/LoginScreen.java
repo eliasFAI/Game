@@ -87,5 +87,8 @@ public class LoginScreen extends AppCompatActivity {
         }
 
     }
+    public void salirdeaplicacion(View view){
+        finish();
+    }
 
 }

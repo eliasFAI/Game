@@ -1817,7 +1817,6 @@ int id all 0x7f080048
 int id always 0x7f080049
 int id animateToEnd 0x7f08004a
 int id animateToStart 0x7f08004b
-int id anterior 0x7f08004c
 int id arc 0x7f08004d
 int id asConfigured 0x7f08004e
 int id async 0x7f08004f
@@ -1833,8 +1832,8 @@ int id blocking 0x7f080058
 int id bottom 0x7f080059
 int id bounce 0x7f08005a
 int id button 0x7f08005b
-int id button10 0x7f08005c
 int id button11 0x7f08005d
+int id button14 0x7f0801c4
 int id button2 0x7f08005e
 int id button3 0x7f08005f
 int id button4 0x7f080060
@@ -1842,7 +1841,6 @@ int id button5 0x7f080061
 int id button6 0x7f080062
 int id button7 0x7f080063
 int id button8 0x7f080064
-int id button9 0x7f080065
 int id buttonPanel 0x7f080066
 int id cancel_button 0x7f080067
 int id center 0x7f080068
@@ -1850,9 +1848,6 @@ int id center_horizontal 0x7f080069
 int id center_vertical 0x7f08006a
 int id chain 0x7f08006b
 int id chains 0x7f08006c
-int id checkBox 0x7f08006d
-int id checkBox2 0x7f08006e
-int id checkBox3 0x7f08006f
 int id checkbox 0x7f080070
 int id checked 0x7f080071
 int id chip 0x7f080072
@@ -2059,6 +2054,9 @@ int id postLayout 0x7f080139
 int id progress_circular 0x7f08013a
 int id progress_horizontal 0x7f08013b
 int id radio 0x7f08013c
+int id radioButton 0x7f0801c1
+int id radioButton2 0x7f0801c2
+int id radioButton3 0x7f0801c3
 int id ratio 0x7f08013d
 int id rectangles 0x7f08013e
 int id reverseSawtooth 0x7f08013f

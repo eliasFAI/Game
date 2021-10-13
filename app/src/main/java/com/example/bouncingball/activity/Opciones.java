@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,12 +25,13 @@ public class Opciones extends AppCompatActivity {
     private CheckBox c1,c2,c3 ;
     private Switch aSwitchE ,aSwitchS;
     private MediaPlayer mp ;
-    private Button b1 ,b2 ,b5;
+    private Button btn_regresar,btn_validar ;
     private ImageButton btn_sonido ,btn_idioma ;
     private EditText usuario ;
     private EditText clave;
     private MediaPlayer mpclic ;
     private boolean encendida  ;
+    private RadioButton btn_facil ,btn_intermedio,btn_dificil ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +39,15 @@ public class Opciones extends AppCompatActivity {
         mpclic = MediaPlayer.create(this,R.raw.clic);
 
         recibir_date();
-        c1 = (CheckBox) findViewById(R.id.checkBox);
-        c2 = (CheckBox) findViewById(R.id.checkBox2);
-        c3 = (CheckBox) findViewById(R.id.checkBox3);
+        btn_facil = (RadioButton) findViewById(R.id.radioButton3);
+        btn_intermedio = (RadioButton) findViewById(R.id.radioButton2);
+        btn_dificil = (RadioButton) findViewById(R.id.radioButton);
+
         txtNivelDelJuego =(TextView) findViewById(R.id.textView);
-        b1 = (Button) findViewById(R.id.button10);
-        b2 = (Button) findViewById(R.id.button9);
+        btn_regresar = (Button) findViewById(R.id.button);
         btn_sonido = (ImageButton) findViewById(R.id.imageButton);
         btn_idioma = (ImageButton) findViewById(R.id.imageButton2);
-
+        btn_validar =  (Button) findViewById(R.id.button14);
         encendida = false ;
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
@@ -66,27 +68,27 @@ public class Opciones extends AppCompatActivity {
     }
     public void onClick(View v){
          mpclic.start();
-         if(v.getId()==R.id.button10){
-            validar();
+         if(btn_facil.isChecked()){
+          /*
+          * Seleccion de modo facil
+          * */
+         }else{
+             if(btn_intermedio.isChecked()){
+                 /*
+                 * Seleccion de modo Intermedio
+                 * */
+             }
+             else{
+                 /*
+                 * Seleccion de modo Dificil
+                 * */
+
+             }
          }
 
+
     }
-    private void validar(){
 
-        String cad ="Seleccionado: \n";
-
-        if(c1.isChecked()){
-          cad+="Opcion1";
-        }
-
-        if(c2.isChecked()){
-            cad+="Opcion2";
-        }
-        if(c3.isChecked()){
-            cad+="Opcion3";
-        }
-        Toast.makeText(getApplicationContext(),cad,Toast.LENGTH_SHORT).show();
-    }
 
     public void onClickIdioma(View v){
 
@@ -119,25 +121,25 @@ public class Opciones extends AppCompatActivity {
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
+            btn_idioma.setImageResource(R.drawable.argentina);
 
             txtNivelDelJuego.setText("Nivel del Juego");
-            c1.setText("Facil");
-            c2.setText("Intermedio");
-            c3.setText("Dificil");
-            b1.setText("Validar");
-            b2.setText("Volver");
+            btn_facil.setText("Facil");
+            btn_intermedio.setText("Intermedio");
+            btn_dificil.setText("Dificil");
+            btn_validar.setText("Validar");
+            btn_regresar.setText("Volver");
 
         }
         else{
 
-
+            btn_idioma.setImageResource(R.drawable.estadosunidos);
             txtNivelDelJuego.setText("Level of Play");
-            c1.setText("Easy");
-            c2.setText("Intermediate");
-            c3.setText("Hard");
-            b1.setText("Validate");
-            b2.setText("Previous");
+            btn_facil.setText("Easy");
+            btn_intermedio.setText("Intermediate");
+            btn_dificil.setText("Hard");
+            btn_validar.setText("Validate");
+            btn_regresar.setText("Previous");
 
         }
 
@@ -167,7 +169,6 @@ public class Opciones extends AppCompatActivity {
     }
     public void volver(View v){
         mpclic.start();
-        Intent menu = new Intent(Opciones.this, MainActivity.class);
-        startActivity(menu);
+        onBackPressed();
     }
 }
