@@ -11,7 +11,7 @@
 9-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 10
 11    <application
-11-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-30:19
+11-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-35:19
 12        android:allowBackup="true"
 12-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -29,46 +29,52 @@
 19-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:11:9-59
 20        <activity
 20-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:12:9-14:39
-21            android:name="com.example.bouncingball.activity.Opciones"
-21-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:13:13-46
+21            android:name="com.example.bouncingball.activity.EventoActivity"
+21-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:13:13-52
 22            android:exported="true" />
 22-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:14:13-36
-23        <activity android:name="com.example.bouncingball.activity.Main4Activity" />
-23-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:9-60
-23-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:19-57
-24        <activity android:name="com.example.bouncingball.activity.Main3Activity" />
-24-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:9-60
-24-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:19-57
-25        <activity android:name="com.example.bouncingball.activity.Main2Activity" />
-25-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:9-60
-25-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:19-57
-26        <activity android:name="com.example.bouncingball.activity.MainActivity" />
-26-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:9-59
-26-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:19-56
-27        <activity
-27-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:9-27:20
-28            android:name="com.example.bouncingball.activity.LoginScreen"
-28-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:13-49
-29            android:exported="true" >
-29-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:13-36
-30            <intent-filter>
-30-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:22:13-26:29
-31                <action android:name="android.intent.action.MAIN" />
-31-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:17-69
-31-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:25-66
-32
-33                <category android:name="android.intent.category.LAUNCHER" />
-33-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:17-77
-33-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:27-74
-34            </intent-filter>
-35        </activity>
-36
-37        <service
-37-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:9-29:46
-38            android:name="com.example.bouncingball.activity.ServicioMusica"
-38-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:18-57
-39            android:enabled="true" />
-39-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:29:13-35
-40    </application>
-41
-42</manifest>
+23        <activity
+23-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:9-17:39
+24            android:name="com.example.bouncingball.activity.Opciones"
+24-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:13-46
+25            android:exported="true" />
+25-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:13-36
+26        <activity android:name="com.example.bouncingball.activity.Main4Activity" />
+26-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:9-60
+26-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:19-57
+27        <activity android:name="com.example.bouncingball.activity.Main3Activity" />
+27-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:9-60
+27-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:19-57
+28        <activity android:name="com.example.bouncingball.activity.Main2Activity" />
+28-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:9-60
+28-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:19-57
+29        <activity android:name="com.example.bouncingball.activity.MainActivity" />
+29-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:9-59
+29-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:19-56
+30        <activity
+30-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:22:9-30:20
+31            android:name="com.example.bouncingball.activity.LoginScreen"
+31-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:13-49
+32            android:exported="true" >
+32-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:24:13-36
+33            <intent-filter>
+33-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:13-29:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:26:17-69
+34-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:26:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:17-77
+36-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:27-74
+37            </intent-filter>
+38        </activity>
+39
+40        <service
+40-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:32:9-34:38
+41            android:name="com.example.bouncingball.activity.ServicioMusica"
+41-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:33:13-52
+42            android:enabled="true" />
+42-->/home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:34:13-35
+43    </application>
+44
+45</manifest>

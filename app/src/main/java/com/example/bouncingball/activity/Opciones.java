@@ -75,6 +75,7 @@ public class Opciones extends AppCompatActivity {
           /*
           * Seleccion de modo facil los bloques son mas fragiles
           * */
+             Toast.makeText(this, "Nivel Facil", Toast.LENGTH_SHORT).show();
              editor.putInt("level",1);
              editor.commit();
 
@@ -85,6 +86,7 @@ public class Opciones extends AppCompatActivity {
                  * Seleccion de modo Intermedio cambio de la dureza del bloque
                  * Cambia la distribucion de los bloques
                  * */
+                 Toast.makeText(this, "Nivel Intermedio", Toast.LENGTH_SHORT).show();
                  editor.putInt("level",2);
                  editor.commit();
              }
@@ -92,8 +94,8 @@ public class Opciones extends AppCompatActivity {
                  /*
                  * Seleccion de modo Dificil
                  * */
+                 Toast.makeText(this, "Nivel Dificil", Toast.LENGTH_SHORT).show();
                  editor.putInt("level",3);
-
                  editor.commit();
              }
          }

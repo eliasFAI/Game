@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
 MERGED from [com.google.android.material:material:1.4.0] /root/Android/jre/caches/transforms-3/b401bbd386ef73872b0073bd55ee1f0b/transformed/material-1.4.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /root/Android/jre/caches/transforms-3/402267f0a254460e87e9435a96f5bfba/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] /root/Android/jre/caches/transforms-3/3109fa55ae143c0f8f7eeab21d745e0d/transformed/appcompat-1.2.0/AndroidManifest.xml:17:1-24:12
@@ -37,25 +37,25 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /root/Android/jre/cac
 MERGED from [androidx.savedstate:savedstate:1.0.0] /root/Android/jre/caches/transforms-3/585f1b03bc0825a7adc8ae1fef4a3f03/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /root/Android/jre/caches/transforms-3/2f8e445222e4e599ddd0550fcb0ff3e9/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] /root/Android/jre/caches/transforms-3/3b9b53105509eef60ab6de9e9a319267/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
+INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
 	package
 		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:3:5-39
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:1-37:12
 		INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-30:19
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:5:5-35:19
 MERGED from [com.google.android.material:material:1.4.0] /root/Android/jre/caches/transforms-3/b401bbd386ef73872b0073bd55ee1f0b/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.4.0] /root/Android/jre/caches/transforms-3/b401bbd386ef73872b0073bd55ee1f0b/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /root/Android/jre/caches/transforms-3/402267f0a254460e87e9435a96f5bfba/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -78,50 +78,56 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /root/Andro
 		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:11:9-59
-activity#com.example.bouncingball.activity.Opciones
+activity#com.example.bouncingball.activity.EventoActivity
 ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:12:9-14:39
 	android:exported
 		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:14:13-36
 	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:13:13-46
-activity#com.example.bouncingball.activity.Main4Activity
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:9-60
-	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:19-57
-activity#com.example.bouncingball.activity.Main3Activity
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:9-60
-	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:19-57
-activity#com.example.bouncingball.activity.Main2Activity
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:9-60
-	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:19-57
-activity#com.example.bouncingball.activity.MainActivity
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:9-59
-	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:19-56
-activity#com.example.bouncingball.activity.LoginScreen
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:9-27:20
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:13:13-52
+activity#com.example.bouncingball.activity.Opciones
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:15:9-17:39
 	android:exported
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:13-36
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:13-49
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:16:13-46
+activity#com.example.bouncingball.activity.Main4Activity
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:9-60
+	android:name
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:18:19-57
+activity#com.example.bouncingball.activity.Main3Activity
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:9-60
+	android:name
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:19:19-57
+activity#com.example.bouncingball.activity.Main2Activity
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:9-60
+	android:name
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:20:19-57
+activity#com.example.bouncingball.activity.MainActivity
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:9-59
+	android:name
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:21:19-56
+activity#com.example.bouncingball.activity.LoginScreen
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:22:9-30:20
+	android:exported
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:24:13-36
+	android:name
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:13-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:22:13-26:29
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:13-29:29
 action#android.intent.action.MAIN
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:17-69
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:23:25-66
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:17-77
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:17-77
 	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:25:27-74
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:27-74
 service#com.example.bouncingball.activity.ServicioMusica
-ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:9-29:46
+ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:32:9-34:38
 	android:enabled
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:29:13-35
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:34:13-35
 	android:name
-		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:28:18-57
+		ADDED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml:33:13-52
 uses-sdk
 INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/elias/Escritorio/Branch_Game/Game/app/src/main/AndroidManifest.xml

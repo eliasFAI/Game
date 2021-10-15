@@ -1,7 +1,12 @@
 package com.example.bouncingball.logica;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.getIntent;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +25,9 @@ import android.view.SurfaceHolder;
 import androidx.core.math.MathUtils;
 
 import com.example.bouncingball.R;
+import com.example.bouncingball.activity.EventoActivity;
+import com.example.bouncingball.activity.LoginScreen;
+import com.example.bouncingball.activity.MainActivity;
 import com.example.bouncingball.clases.Bloque;
 import com.example.bouncingball.clases.Pelota;
 import com.example.bouncingball.database.dbConexion;
@@ -381,6 +389,10 @@ public class GameView extends SurfaceView {
         gameThread.pause();
         this.reubicarPelota();
         this.grilla.avanzarUnNivel();
+       // Intent intent = new Intent().setClass(getContext(), EventoActivity.class);
+        //getContext().startActivity(intent);
+        //getContext().startActivity(intent.);
+       // ((Activity) getContext()).startActivity(intent);
         bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
         canvas.drawBitmap(bmp, 0, 0, null);
         SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
@@ -488,8 +500,10 @@ public class GameView extends SurfaceView {
         this.grilla.setCantidadBloquesPintados(0);
         this.grilla.reiniciarGrilla();
         gameThread.pause();
-        bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
-        canvas.drawBitmap(bmp, 0, 0, null);
+        Intent myevento = new Intent(getContext(), EventoActivity.class);
+        startActivity(getContext(),myevento,null);
+        //bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
+        //canvas.drawBitmap(bmp, 0, 0, null);
         System.out.println("Despues de la pausa");
     }
 

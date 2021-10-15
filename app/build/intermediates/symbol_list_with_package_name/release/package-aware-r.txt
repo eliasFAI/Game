@@ -1686,6 +1686,7 @@ drawable btn_radio_on_to_off_mtrl_animation
 drawable button_circle
 drawable button_rounded
 drawable button_rounded_border
+drawable button_rounded_press
 drawable consonido
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1737,6 +1738,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pelota2
+drawable press_button
 drawable sinsonido
 drawable test_custom_background
 drawable tooltip_frame_dark
@@ -1746,6 +1748,7 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id Continuar
 id FUNCTION
 id META
 id NO_DEBUG
@@ -1833,7 +1836,9 @@ id blocking
 id bottom
 id bounce
 id button
+id button10
 id button11
+id button12
 id button14
 id button2
 id button3
@@ -1950,6 +1955,7 @@ id imageButton
 id imageButton2
 id imageView
 id imageView2
+id imageView3
 id imageView4
 id info
 id invisible
@@ -2255,6 +2261,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_evento
 layout activity_login_screen
 layout activity_main
 layout activity_main2

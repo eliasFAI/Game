@@ -17,6 +17,9 @@ public class Grilla {
     private int nivelActual;
     private Bloque[][] matrizBloque;
     private Paint pincelDureza =  new Paint();
+    private Paint pincelMuralla =  new Paint();
+    private Paint pincelTorre = new Paint();
+    private Paint pincelPeon = new Paint();
 
 
 
@@ -112,11 +115,12 @@ public class Grilla {
                 pintarNivelDePrueba();
                 break;
             case 1:
-                pintarNivel0();
+                pintarNivelDePrueba();
+                //pintarNivel0();
                 break;
             case 2: pintarlNivel1();
                 break;
-            case 3: pintarNivel2();
+            case 3: nave();
                 break;
         }
     }
@@ -152,15 +156,77 @@ public class Grilla {
     }
 
     private void pintarNivel0(){
-        for (int i=0;i<this.matrizBloque.length-7;i++){
+        for (int i=0;i<this.matrizBloque.length-3;i++){
             for (int j=0;j<this.matrizBloque[0].length;j++){
                 this.matrizBloque[i][j].setDureza(1);
                 this.cantidadBloquesPintados+=1;
             }
         }
+        pintarLosBloquesNivelO();
+    }
+    private void pintarLosBloquesNivelO(){
+        /*
+         * Definir los colores
+         * */
+        Paint pincelBlue = new Paint();
+        pincelBlue.setColor(Color.BLUE);
+        Paint pincelGreen = new Paint();
+        pincelGreen.setColor(Color.GREEN);
+        Paint pincelRed = new Paint();
+        pincelRed.setColor(Color.RED);
+        Paint pincel = new Paint();
+        pincel.setColor(Color.CYAN);
+        //fila 0
+        this.matrizBloque[0][0].setPincel(pincelBlue);
+        this.matrizBloque[0][1].setPincel(pincelBlue);
+        this.matrizBloque[0][2].setPincel(pincelBlue);
+        this.matrizBloque[0][3].setPincel(pincelBlue);
+        this.matrizBloque[0][4].setPincel(pincelBlue);
+        this.matrizBloque[0][5].setPincel(pincelBlue);
+        this.matrizBloque[0][6].setPincel(pincelBlue);
+        // fila 1
+        this.matrizBloque[1][0].setPincel(pincelGreen);
+        this.matrizBloque[1][1].setPincel(pincelGreen);
+        this.matrizBloque[1][2].setPincel(pincelGreen);
+        this.matrizBloque[1][3].setPincel(pincelGreen);
+        this.matrizBloque[1][4].setPincel(pincelGreen);
+        this.matrizBloque[1][5].setPincel(pincelGreen);
+        this.matrizBloque[1][6].setPincel(pincelGreen);
+        // fila 2 yellow , 3
+        // fila 4
+        this.matrizBloque[4][0].setPincel(pincel);
+        this.matrizBloque[4][1].setPincel(pincel);
+        this.matrizBloque[4][2].setPincel(pincel);
+        this.matrizBloque[4][3].setPincel(pincel);
+        this.matrizBloque[4][4].setPincel(pincel);
+        this.matrizBloque[4][5].setPincel(pincel);
+        this.matrizBloque[4][6].setPincel(pincel);
+        // fila 5
+        this.matrizBloque[5][0].setPincel(pincelRed);
+        this.matrizBloque[5][1].setPincel(pincelRed);
+        this.matrizBloque[5][2].setPincel(pincelRed);
+        this.matrizBloque[5][3].setPincel(pincelRed);
+        this.matrizBloque[5][4].setPincel(pincelRed);
+        this.matrizBloque[5][5].setPincel(pincelRed);
+        this.matrizBloque[5][6].setPincel(pincelRed);
+        // fila 6
+        this.matrizBloque[6][0].setPincel(pincelRed);
+        this.matrizBloque[6][1].setPincel(pincelRed);
+        this.matrizBloque[6][2].setPincel(pincelRed);
+        this.matrizBloque[6][3].setPincel(pincelRed);
+        this.matrizBloque[6][4].setPincel(pincelRed);
+        this.matrizBloque[6][5].setPincel(pincelRed);
+        this.matrizBloque[6][6].setPincel(pincelRed);
+
+
+
+
+
+
     }
 
     private void pintarlNivel1(){
+
         System.out.println("nivel 1");
         this.cantidadBloquesPintados=46;
        //Fila0
@@ -219,47 +285,96 @@ public class Grilla {
         this.matrizBloque[8][4].setDureza(1);
         //Fila 9
         this.matrizBloque[9][3].setDureza(1);
+      pintarBloqueNivel2();
+    }
+
+    private void pintarBloqueNivel2(){
+        Paint pincelBlue = new Paint();
+        pincelBlue.setColor(Color.BLUE);
+        Paint pincelR = new Paint();
+        pincelR.setColor(Color.RED);
+
+        this.matrizBloque[2][5].setPincel(pincelBlue);
+        this.matrizBloque[3][4].setPincel(pincelBlue);
+        this.matrizBloque[4][3].setPincel(pincelBlue);
+        this.matrizBloque[5][2].setPincel(pincelBlue);
+        this.matrizBloque[6][1].setPincel(pincelBlue);
+        this.matrizBloque[2][1].setPincel(pincelBlue);
+        this.matrizBloque[3][2].setPincel(pincelBlue);
+        this.matrizBloque[5][4].setPincel(pincelBlue);
+        this.matrizBloque[6][5].setPincel(pincelBlue);
+
+        this.matrizBloque[5][3].setPincel(pincelR);
+        this.matrizBloque[6][2].setPincel(pincelR);
+        this.matrizBloque[6][3].setPincel(pincelR);
+        this.matrizBloque[6][4].setPincel(pincelR);
+        this.matrizBloque[7][1].setPincel(pincelR);
+        this.matrizBloque[7][2].setPincel(pincelR);
+        this.matrizBloque[7][3].setPincel(pincelR);
+        this.matrizBloque[7][4].setPincel(pincelR);
+        this.matrizBloque[7][5].setPincel(pincelR);
+        this.matrizBloque[8][2].setPincel(pincelR);
+        this.matrizBloque[8][3].setPincel(pincelR);
+        this.matrizBloque[8][4].setPincel(pincelR);
+        this.matrizBloque[9][3].setPincel(pincelR);
+
+
+
+
 
 
 
     }
 
-    private void pintarNivel2(){
-        pincelDureza.setColor(Color.GRAY);
-        this.cantidadBloquesPintados=48;
-        //Fila5
-        this.matrizBloque[5][0].setDureza(1);
-        this.matrizBloque[5][6].setDureza(1);
-
-        this.matrizBloque[6][0].setDureza(1);
+    public void nave(){
+        this.cantidadBloquesPintados=45;
+        // fila 0
+        this.matrizBloque[0][0].setDureza(1);
+        this.matrizBloque[0][1].setDureza(1);
+        this.matrizBloque[0][2].setDureza(1);
+        this.matrizBloque[0][3].setDureza(1);
+        this.matrizBloque[0][4].setDureza(1);
+        this.matrizBloque[0][5].setDureza(1);
+        this.matrizBloque[0][6].setDureza(1);
+        // fila 1
+        this.matrizBloque[1][0].setDureza(1);
+        this.matrizBloque[1][1].setDureza(1);
+        this.matrizBloque[1][2].setDureza(1);
+        this.matrizBloque[1][3].setDureza(1);
+        this.matrizBloque[1][4].setDureza(1);
+        this.matrizBloque[1][5].setDureza(1);
+        this.matrizBloque[1][6].setDureza(1);
+        //fila 2
+        this.matrizBloque[2][0].setDureza(1);
+        this.matrizBloque[2][1].setDureza(1);
+        this.matrizBloque[2][2].setDureza(1);
+        this.matrizBloque[2][3].setDureza(1);
+        this.matrizBloque[2][4].setDureza(1);
+        this.matrizBloque[2][5].setDureza(1);
+        this.matrizBloque[2][6].setDureza(1);
+        // fila 3
+        this.matrizBloque[3][1].setDureza(1);
+        this.matrizBloque[3][2].setDureza(1);
+        this.matrizBloque[3][3].setDureza(1);
+        this.matrizBloque[3][4].setDureza(1);
+        this.matrizBloque[3][5].setDureza(1);
+        // fila 4
+        this.matrizBloque[4][2].setDureza(1);
+        this.matrizBloque[4][3].setDureza(1);
+        this.matrizBloque[4][4].setDureza(1);
+        // fila 5
+        this.matrizBloque[5][3].setDureza(1);
+        // fila 6
         this.matrizBloque[6][1].setDureza(1);
+        this.matrizBloque[6][2].setDureza(1);
+        this.matrizBloque[6][3].setDureza(1);
+        this.matrizBloque[6][4].setDureza(1);
         this.matrizBloque[6][5].setDureza(1);
-        this.matrizBloque[6][6].setDureza(1);
-
-        //Fila7
-        this.matrizBloque[7][0].setDureza(1);
-        this.matrizBloque[7][1].setDureza(1);
+        // fila 7
         this.matrizBloque[7][2].setDureza(1);
+        this.matrizBloque[7][3].setDureza(1);
         this.matrizBloque[7][4].setDureza(1);
-        this.matrizBloque[7][5].setDureza(1);
-        this.matrizBloque[7][6].setDureza(1);
-        //Fila8
-        this.matrizBloque[8][0].setDureza(1);
-        this.matrizBloque[8][1].setDureza(1);
-        this.matrizBloque[8][2].setDureza(1);
-        this.matrizBloque[8][3].setDureza(1);
-        this.matrizBloque[8][4].setDureza(1);
-        this.matrizBloque[8][5].setDureza(1);
-        this.matrizBloque[8][6].setDureza(1);
-        //Fila9
-        this.matrizBloque[9][0].setPincel(pincelDureza);
-        this.matrizBloque[9][1].setPincel(pincelDureza);
-        this.matrizBloque[9][2].setPincel(pincelDureza);
-        this.matrizBloque[9][3].setPincel(pincelDureza);
-        this.matrizBloque[9][4].setPincel(pincelDureza);
-        this.matrizBloque[9][5].setPincel(pincelDureza);
-        this.matrizBloque[9][6].setPincel(pincelDureza);
-
+        // fila 9
         this.matrizBloque[9][0].setDureza(2);
         this.matrizBloque[9][1].setDureza(2);
         this.matrizBloque[9][2].setDureza(2);
@@ -267,28 +382,68 @@ public class Grilla {
         this.matrizBloque[9][4].setDureza(2);
         this.matrizBloque[9][5].setDureza(2);
         this.matrizBloque[9][6].setDureza(2);
-        /*
-        //Fila10
-        this.matrizBloque[10][0].setDureza(1);
-        this.matrizBloque[10][1].setDureza(1);
-        //Fila11
-        this.matrizBloque[11][0].setDureza(1);
-        this.matrizBloque[11][1].setDureza(1);
-        this.matrizBloque[11][2].setDureza(1);
-        this.matrizBloque[11][3].setDureza(1);
-        this.matrizBloque[11][4].setDureza(1);
-        this.matrizBloque[11][5].setDureza(1);
-        this.matrizBloque[11][6].setDureza(1);
-        //Fila12
-        this.matrizBloque[12][0].setDureza(1);
-        this.matrizBloque[12][1].setDureza(1);
-        this.matrizBloque[12][2].setDureza(1);
-        this.matrizBloque[12][3].setDureza(1);
-        this.matrizBloque[12][4].setDureza(1);
-        this.matrizBloque[12][5].setDureza(1);
-        this.matrizBloque[12][6].setDureza(1); */
+     pintarNave();
     }
+    private void pintarNave(){
 
+        /*
+        * Definir los colores
+        * */
+        Paint pincelBlue = new Paint();
+        pincelBlue.setColor(Color.BLUE);
+        Paint pincelGris = new Paint();
+        pincelGris.setColor(Color.GRAY);
+        Paint pincelGreen = new Paint();
+        pincelGreen.setColor(Color.GREEN);
+        Paint pincelRed = new Paint();
+        pincelRed.setColor(Color.RED);
+        Paint pincel = new Paint();
+        pincel.setColor(Color.CYAN);
+
+        // fila 2
+        this.matrizBloque[2][0].setPincel(pincelBlue);
+        this.matrizBloque[2][1].setPincel(pincelBlue);
+        this.matrizBloque[2][2].setPincel(pincelBlue);
+        this.matrizBloque[2][3].setPincel(pincelBlue);
+        this.matrizBloque[2][4].setPincel(pincelBlue);
+        this.matrizBloque[2][5].setPincel(pincelBlue);
+        this.matrizBloque[2][6].setPincel(pincelBlue);
+        // fila 3
+        this.matrizBloque[3][1].setPincel(pincel);
+        this.matrizBloque[3][2].setPincel(pincel);
+        this.matrizBloque[3][3].setPincel(pincel);
+        this.matrizBloque[3][4].setPincel(pincel);
+        this.matrizBloque[3][5].setPincel(pincel);
+        // fila 4
+        this.matrizBloque[4][2].setPincel(pincelGreen);
+        this.matrizBloque[4][3].setPincel(pincelGreen);
+        this.matrizBloque[4][4].setPincel(pincelGreen);
+        // fila 5
+        this.matrizBloque[5][3].setPincel(pincelRed);
+        // fila 6
+        this.matrizBloque[6][1].setPincel(pincelRed);
+        this.matrizBloque[6][2].setPincel(pincelRed);
+        this.matrizBloque[6][3].setPincel(pincelRed);
+        this.matrizBloque[6][4].setPincel(pincelRed);
+        this.matrizBloque[6][5].setPincel(pincelRed);
+        // fila 7
+        this.matrizBloque[7][2].setPincel(pincelRed);
+        this.matrizBloque[7][3].setPincel(pincelRed);
+        this.matrizBloque[7][4].setPincel(pincelRed);
+        // fila 9
+        this.matrizBloque[9][0].setPincel(pincelGris);
+        this.matrizBloque[9][1].setPincel(pincelGris);
+        this.matrizBloque[9][2].setPincel(pincelGris);
+        this.matrizBloque[9][3].setPincel(pincelGris);
+        this.matrizBloque[9][4].setPincel(pincelGris);
+        this.matrizBloque[9][5].setPincel(pincelGris);
+        this.matrizBloque[9][6].setPincel(pincelGris);
+
+
+
+
+
+    }
 
 
 }

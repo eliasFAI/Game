@@ -18,6 +18,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
+            android:name="com.example.bouncingball.activity.EventoActivity"
+            android:exported="true" />
+        <activity
             android:name="com.example.bouncingball.activity.Opciones"
             android:exported="true" />
         <activity android:name="com.example.bouncingball.activity.Main4Activity" />
