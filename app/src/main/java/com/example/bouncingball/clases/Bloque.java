@@ -1,16 +1,12 @@
 package com.example.bouncingball.clases;
-
-
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Rect;
-
-import com.example.bouncingball.logica.Grilla;
-
-import java.util.ArrayList;
 
 public class Bloque {
 
     private Paint pincel;
+    private Bitmap imgBloque;
     private int anchoBloque;
     private int altoBloque;
     private int posX;
@@ -20,6 +16,8 @@ public class Bloque {
     private int nroFila;
     private int nroColumna;
     private int puntaje;
+    private Rect [] areasDeContacto;
+    private Rect modelo;
 
     public Bloque (int posX, int posY, int ancho, int alto){
         this.posX=posX;
@@ -31,19 +29,60 @@ public class Bloque {
         this.puntaje=100;
     }
 
-    public Bloque (int posX, int posY, int ancho, int alto, Paint pincel, int est, int nroColumna, int nroFila, int id){
+    public Bloque (int posX, int posY, int ancho, int alto, int est, Bitmap imgBloque){
         this.posX=posX;
         this.posY=posY;
         this.anchoBloque=ancho;
         this.altoBloque=alto;
-        this.pincel=pincel;
+        this.imgBloque = imgBloque;
         this.dureza=est;
         this.id=id;
         this.puntaje=100;
+        this.modelo = new Rect(posX, posY, posX + ancho, posY + alto);
+        this.areasDeContacto = this.inicializarAreasDeContacto();
+    }
 
-        this.nroColumna=nroColumna;
-        this.nroFila=nroFila;
+    private Rect[] inicializarAreasDeContacto(){
+        int velocidad=13;
+        Rect [] areas=new Rect[8];
 
+        //Esquina 1
+        Rect area1=new Rect(posX,posY,posX+velocidad-1,posY+velocidad-1);
+
+        Rect area2=new Rect(posX+velocidad,posY,posX+anchoBloque-velocidad,posY+velocidad);
+        //Esquina 2
+        Rect area3=new Rect(posX+anchoBloque-velocidad+1,posY,posX+anchoBloque,posY+velocidad-1);
+
+        Rect area4=new Rect(posX,posY+velocidad,posX+velocidad,posY+altoBloque-velocidad);
+
+        Rect area5=new Rect(posX+getAnchoBloque()-velocidad,posY+velocidad,posX+getAnchoBloque(),posY+getAltoBloque()-velocidad);
+        //Esquina 3
+        Rect area6=new Rect(posX,posY+getAltoBloque()-velocidad-1,posX+velocidad-1,posY+getAltoBloque());
+
+        Rect area7=new Rect(posX+velocidad,posY+getAltoBloque()-velocidad,posX+getAnchoBloque()-velocidad,posY+getAltoBloque());
+        //Esquina 4
+        Rect area8=new Rect(posX+getAnchoBloque()-velocidad+1,posY+getAltoBloque()-velocidad+1,posX+getAnchoBloque(),posY+getAltoBloque());
+
+        areas[0]=area1;
+        areas[1]=area2;
+        areas[2]=area3;
+        areas[3]=area4;
+        areas[4]=area5;
+        areas[5]=area6;
+        areas[6]=area7;
+        areas[7]=area8;
+
+        return areas;
+    }
+
+    public Rect getModelo(){
+        return this.modelo;
+    }
+    public Bitmap getImagen(){
+        return this.imgBloque;
+    }
+    public void setImagen(Bitmap imgBloque){
+        this.imgBloque = imgBloque;
     }
 
     public int getLeft(){
@@ -155,98 +194,52 @@ public class Bloque {
         return areas;
     }
 
-    public ArrayList<Bloque> bloquesAdyacente(Grilla m){
-          //Rect [] adyacente = new Rect[8];
-          ArrayList<Bloque> adyacente = new ArrayList();
-          int pos_X=this.getNroFila();
-          int pos_Y = this.getNroColumna();
+    public int getAreaDeContacto(Pelota pelota){
+        Rect [] areas = this.areasDeContacto;
 
-        if (pos_X == 0 && pos_Y == 0) {
+        int posArea = 0;
+        boolean salir = false;
 
-            adyacente.add(m.getBloque(pos_X,(pos_Y+1)));
-            adyacente.add(m.getBloque((pos_X+1),pos_Y));
-            adyacente.add(m.getBloque((pos_X+1),(pos_Y+1)));
+        while(posArea < areas.length && !salir){
+            Rect auxRect = areas[posArea];
 
-        } else {
-            if (pos_X == 0 && pos_Y == m.getCantidadColumnas()-1) {
+            if(pelota.interseccion(auxRect)){
+                salir = true;
+            }else{
+                posArea++;
+            }
+        }
+        System.out.println(" *************** Area despues del while es: "+posArea);
 
-                adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-                adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                adyacente.add(m.getBloque((pos_X+1),(pos_Y-1)));
+        if(posArea == 0){
+            Rect auxRect = areas[1];
+            Rect auxRect2 = areas[3];
 
-            } else {
-                if (pos_Y == 0 && pos_X == m.getCantidadFilas()- 1) {
-
-                    adyacente.add(m.getBloque((pos_X-1),pos_Y));
-                    adyacente.add(m.getBloque((pos_X),(pos_Y+1)));
-                    adyacente.add(m.getBloque((pos_X-1),(pos_Y+1)));
-
-                } else {
-                    if (pos_X == m.getCantidadFilas() - 1 && pos_Y == m.getCantidadColumnas() - 1) {
-
-                        adyacente.add(m.getBloque((pos_X-1),(pos_Y-1)));
-                        adyacente.add(m.getBloque((pos_X-1),(pos_Y)));
-                        adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-
-                    } else {
-                        if (pos_X == 0 ) {
-
-                            adyacente.add(m.getBloque(pos_X,(pos_Y+1)));
-                            adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-                            adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                            adyacente.add(m.getBloque((pos_X+1),(pos_Y+1)));
-                            adyacente.add(m.getBloque((pos_X+1),(pos_Y-1)));
-
-                        } else {
-                            if (pos_X == m.getCantidadFilas()- 1 ) {
-                                adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-                                adyacente.add(m.getBloque(pos_X,(pos_Y+1)));
-                                adyacente.add(m.getBloque((pos_X+1),(pos_Y-1)));
-                                adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                                adyacente.add(m.getBloque((pos_X+1),(pos_Y+1)));
-
-                            } else {
-
-                                if (pos_Y == 0) {
-
-                                    adyacente.add(m.getBloque((pos_X-1),pos_Y));
-                                    adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                                    adyacente.add(m.getBloque((pos_X-1),(pos_Y+1)));
-                                    adyacente.add(m.getBloque(pos_X,(pos_Y+1)));
-                                    adyacente.add(m.getBloque((pos_X+1),(pos_Y+1)));
-
-
-                                } else {
-
-                                    if (pos_Y == m.getCantidadColumnas()-1 ) {
-
-                                        adyacente.add(m.getBloque((pos_X-1),pos_Y));
-                                        adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                                        adyacente.add(m.getBloque((pos_X-1),(pos_Y-1)));
-                                        adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-                                        adyacente.add(m.getBloque((pos_X+1),(pos_Y-1)));
-
-
-                                    } else {
-
-                                        adyacente.add(m.getBloque((pos_X-1),(pos_Y-1)));
-                                        adyacente.add(m.getBloque((pos_X-1),pos_Y));
-                                        adyacente.add(m.getBloque((pos_X-1),(pos_Y+1)));
-                                        adyacente.add(m.getBloque(pos_X,(pos_Y-1)));
-                                        adyacente.add(m.getBloque(pos_X,(pos_Y+1)));
-                                        adyacente.add(m.getBloque((pos_X+1),(pos_Y-1)));
-                                        adyacente.add(m.getBloque((pos_X+1),pos_Y));
-                                        adyacente.add(m.getBloque((pos_X+1),(pos_Y+1)));
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            if(pelota.interseccion(auxRect)){
+                posArea = 1;
+            }else if(pelota.interseccion(auxRect2)){
+                posArea = 3;
             }
         }
 
-        return adyacente ;
+        if(posArea == 2){
+            Rect auxRect = areas[1];
+
+            if(pelota.interseccion(auxRect)){
+                posArea = 1;
+            }
+        }
+
+        if(posArea == 5){
+            Rect auxRect = areas[6];
+
+            if(pelota.interseccion(auxRect)){
+                posArea = 6;
+            }
+        }
+
+        System.out.print("Area al salir del metodo actualizarDireccion2 : "+posArea);
+        System.out.println();
+        return posArea;
     }
 }

@@ -18,27 +18,26 @@
             app:srcCompat="@drawable/ball" />
 
         <Button
-            android:id="@+id/Continuar"
+            android:id="@+id/idcontinuar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded"
-            android:text="Continuar Jugando" />
+            android:onClick="play"
+            android:text=" Siguiente Nivel" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/idsubirnivel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded_border"
-            android:text="Subir de Nivel" />
+            android:onClick="opciones"
+            android:text="Regresar Menu" />
 
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/button_rounded"
-            android:text="Regresar" />
     </LinearLayout>
 </RelativeLayout>

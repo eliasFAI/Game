@@ -1675,6 +1675,9 @@ drawable argentina
 drawable avd_hide_password
 drawable avd_show_password
 drawable ball
+drawable bloquedureza1
+drawable bloquesdureza2
+drawable bloquesdureza2roto
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1704,6 +1707,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable jugador
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1738,6 +1742,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pelota2
+drawable pelotagris
 drawable press_button
 drawable sinsonido
 drawable test_custom_background
@@ -1748,7 +1753,6 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
-id Continuar
 id FUNCTION
 id META
 id NO_DEBUG
@@ -1836,9 +1840,7 @@ id blocking
 id bottom
 id bounce
 id button
-id button10
 id button11
-id button12
 id button14
 id button2
 id button3
@@ -1947,6 +1949,8 @@ id honorRequest
 id icon
 id icon_group
 id idJugadorPuntajeMax
+id idcontinuar
+id idsubirnivel
 id ifRoom
 id ignore
 id ignoreRequest

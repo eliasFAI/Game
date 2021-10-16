@@ -1,4 +1,7 @@
 package com.example.bouncingball.clases;
+import android.graphics.Rect;
+
+import androidx.core.math.MathUtils;
 
 public class Pelota {
     private int x;
@@ -162,5 +165,104 @@ public class Pelota {
             salida += "Izquierda";
         }
         return salida;
+    }
+
+    public void actualizarDireccion(int area){
+
+    }
+
+    public boolean interseccion(Rect rect){
+        boolean band = false ;
+        int centroDeX = this.x + (this.tamanio / 2);
+        int centroDeY = this.y + (this.tamanio / 2);
+        int radio = this.tamanio / 2;
+
+        // clamp(value, min, max) - limits value to the range min..max
+
+        // Find the closest point to the circle within the rectangle
+        float closestX = MathUtils.clamp(centroDeX, rect.left, rect.right);
+        float closestY = MathUtils.clamp(centroDeY, rect.top, rect.bottom);
+
+        // Calculate the distance between the circle's center and this closest point
+        float distanceX = centroDeX - closestX;//5 - 4=1
+        float distanceY = centroDeY - closestY;//4 - 3=1
+
+        // If the distance is less than the circle's radius, an intersection occurs
+        float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);//2
+        //2<100
+        if(distanceSquared < (radio * radio)){
+            band  = true ;
+        }
+
+        return band ;
+    }
+
+    public void setDireccion3 (int area, String contacto){
+        if(contacto.equalsIgnoreCase("Jugador")){
+            if(area >= 0) {
+                if (this.getDireccion().equals("abajoIzquierda") || this.getDireccion().equals("abajoDerecha")) {
+                    if (this.getDireccion().equals("abajoIzquierda") && area == 4 || this.getDireccion().equals("abajoDerecha") && area == 0) {
+                        this.setDireccionEnX(-1 * this.getDireccionEnX());
+                        this.setDireccionEnY(-1 * this.getDireccionEnY());
+                    } else {
+                        int nuevaDireccion;
+                        if (area == 0 || area == 4) {
+                            nuevaDireccion = (this.getVelocidad() * 33) / 100;
+                        } else if (area == 1 || area == 3) {
+                            nuevaDireccion = (this.getVelocidad() * 110) / 100;
+                        } else {
+                            nuevaDireccion = (this.getVelocidad() * 180) / 100;
+                        }
+                        this.setDireccionEnY(-1 * (nuevaDireccion));
+                    }
+                }
+            }
+        }else{
+            if(area == 1 || area == 6){
+                System.out.println("choco en el area "+area+" en uno de los centros");
+                this.setDireccionEnY(-1 * this.getDireccionEnY());
+            }
+            else if(area == 3 || area == 4){
+                System.out.println("choco en el area "+area+" en uno de los laterales");
+                this.setDireccionEnX(-1 * this.getDireccionEnX());
+            }//Aca comienzan las esquinas
+            else if(area == 0 && !this.getDireccion().equals("abajoDerecha")){
+                if(this.getDireccion().equals("arribaDerecha")){
+                    System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
+                    this.setDireccionEnX(-1 * this.getDireccionEnX());
+                }else if(this.getDireccion().equals("abajoIzquierda")){
+                    System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
+                    this.setDireccionEnY(-1 * this.getDireccionEnY());
+                }
+            }else if(area == 2 && !this.getDireccion().equals("abajoIzquierda")){
+                if(this.getDireccion().equals("arribaIzquierda")){
+                    System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
+                    this.setDireccionEnX(-1 * this.getDireccionEnX());
+                }else if(this.getDireccion().equals("abajoDerecha")){
+                    this.setDireccionEnY(-1 * this.getDireccionEnY());
+                }
+            }else if(area == 5 && !this.getDireccion().equals("arribaDerecha")){
+                if(this.getDireccion().equals("abajoDerecha")){
+                    System.out.println("choco en el area "+area+" en la direccion abajo a la derecha");
+                    this.setDireccionEnX(-1 * this.getDireccionEnX());
+                }else if(this.getDireccion().equals("arribaIzquierda")){
+                    System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
+                    this.setDireccionEnY(-1 * this.getDireccionEnY());
+                }
+            }else if(area == 7 && !this.getDireccion().equals("arribaIzquierda")){
+                if(this.getDireccion().equals("arribaDerecha")){
+                    System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
+                    this.setDireccionEnY(-1 * this.getDireccionEnY());
+                }else if(this.getDireccion().equals("abajoIzquierda")){
+                    System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
+                    this.setDireccionEnX(-1 * this.getDireccionEnX());
+                }
+            }else{
+                System.out.println("choco en el area "+area+" sale en direccion correcta");
+                this.setDireccionEnX(-1 * this.getDireccionEnX());
+                this.setDireccionEnY(-1 * this.getDireccionEnY());
+            }
+        }
+
     }
 }

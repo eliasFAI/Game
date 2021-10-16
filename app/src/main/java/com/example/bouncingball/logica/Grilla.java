@@ -2,9 +2,16 @@ package com.example.bouncingball.logica;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.example.bouncingball.R;
 import com.example.bouncingball.clases.Bloque;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 
-public class Grilla {
+public class Grilla extends GameView {
 
     private int espacioEntreBloques;
     private int anchoPantalla;
@@ -23,7 +30,8 @@ public class Grilla {
 
 
 
-    public Grilla(int ancho, int alto, int cantColumnas, int cantFilas, int alturaBloque ,int nivel){
+    public Grilla(int ancho, int alto, int cantColumnas, int cantFilas, int alturaBloque ,int nivel,Context context){
+        super(context);
         this.anchoPantalla=ancho;
         this.altoPantalla=alto;
         this.cantidadColumnas=cantColumnas;
@@ -51,12 +59,13 @@ public class Grilla {
         Paint pincel=new Paint();
         pincel.setColor(Color.YELLOW);
 
+        Bitmap imgBloqueAmarillo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquedureza1),this.anchoBloque,this.altoDelBloque,false);
 
         for(int i=0;i<this.cantidadFilas;i++){
             posX=posX+borde;
             for(int j=0;j<this.cantidadColumnas;j++){
                 //int dureza=(int)(Math.random()*2);
-                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,pincel,0,i,j,id);
+                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0,imgBloqueAmarillo);
                 posX=posX+anchoBloque+5;
                 //posX=posX+anchoBloque;
                 id=id+1;
@@ -115,8 +124,8 @@ public class Grilla {
                 pintarNivelDePrueba();
                 break;
             case 1:
-                pintarNivelDePrueba();
-                //pintarNivel0();
+                 pintarNivelDePrueba();
+               // pintarNivel0();
                 break;
             case 2: pintarlNivel1();
                 break;
